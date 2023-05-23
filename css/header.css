@@ -92,56 +92,7 @@
     }
 
 
-/* media queries */
-@media screen and (min-width: 800px){
-    .sidebarIconToggle{
-        display: none;
-    }
 
-    .menu{
-        font-family: librebaskerville-regular,Arial, Helvetica, sans-serif;
-        font-size: 15px;
-        padding: 30px;
-        margin: 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 20px;
-        list-style: none;
-    }
-
-    .menu a{
-        text-decoration: none;
-        display: inline-block;
-        position: relative;
-        color: #000000;
-    }
-
-    .menu a::after{
-        content: '→';
-        position: absolute;
-        width: 100%;
-        transform: scaleX(0);
-        height: 1px;
-        bottom: 0;
-        left: 0;
-        background-color: #000000;
-        transform-origin: bottom right;
-        transition: transform 0.3s ease-out;
-    }
-
-    .menu a:hover::after{
-        /* when we hover the menu, it be with a animation from left to right */
-        transform: scaleX(1);
-        transform-origin: bottom left;
-    }
-
-    .menu a.active{
-        font-weight: bold;
-        text-decoration: none;
-        pointer-events: none;
-    }
-}
 
 
 #sidebarMenu {
@@ -246,3 +197,58 @@ input[type=checkbox] {
     margin-top: -9px;
 }
 
+
+
+
+
+
+/* media queries */
+@media screen and (min-width: 800px){
+    .sidebarIconToggle{
+        display: none;
+    }
+
+    .menu{
+        font-family: librebaskerville-regular,Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        padding: 30px;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+    }
+
+    .menu a{
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        color: #000000;
+    }
+
+    .menu a::after{
+        content: '→';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1px;
+        bottom: 0;
+        left: 0;
+        background-color: #000000;
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+    }
+
+    .menu a:hover::after{
+        /* when we hover the menu, it be with a animation from left to right */
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+    .menu a.active{
+        font-weight: bold;
+        text-decoration: none;
+        pointer-events: none;
+    }
+}
