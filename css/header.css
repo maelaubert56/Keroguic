@@ -1,0 +1,248 @@
+/* font import */
+
+@font-face {
+    font-family: "librebaskerville-regular";
+    src: url("../fonts/librebaskerville-regular-webfont.woff2") format("woff2"),
+         url("../fonts/librebaskerville-regular-webfont.woff") format("woff");
+}
+
+@font-face {
+    font-family: "librebaskerville-italic";
+    src: url("../fonts/librebaskerville-italic-webfont.woff2") format("woff2"),
+         url("../fonts/librebaskerville-italic-webfont.woff") format("woff");
+}
+
+@font-face {
+    font-family: "librebaskerville-bold";
+    src: url("../fonts/librebaskerville-bold-webfont.woff2") format("woff2"),
+         url("../fonts/librebaskerville-bold-webfont.woff") format("woff");
+}
+
+.header{
+    z-index: 10;
+}
+
+/* top header */
+.top_header{
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    margin: 0;
+}
+.top_header p{
+    font-family:Inter, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: white;
+    padding: 0;
+    margin: 0;
+    /* only one line */
+    white-space: nowrap;
+    /* reduce the size of the div to match the text */
+    width: fit-content;
+}
+
+/* bottom header */
+
+.bottom_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+
+    /* logo */
+    .logo a{
+        /* flexbox */
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+        padding : 8px;
+        text-decoration: none;
+    }
+
+    .logo img{ /* curvy logo */
+        width: 60px;
+        height: 60px;
+        border-radius: 25%;
+    }
+
+    .logo-text{
+        /* text at the top */
+        color: #000000;
+        font-family: librebaskerville-bold, Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: left;
+    }
+
+    /* menu */
+
+    .icon_menu{
+        cursor: pointer;
+        margin: auto 0;
+        margin-right: 20px;
+    }
+
+    .menu{
+        display:none;
+    }
+
+
+/* media queries */
+@media screen and (min-width: 800px){
+    .sidebarIconToggle{
+        display: none;
+    }
+
+    .menu{
+        font-family: librebaskerville-regular,Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        padding: 30px;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+    }
+
+    .menu a{
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        color: #000000;
+    }
+
+    .menu a::after{
+        content: '→';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1px;
+        bottom: 0;
+        left: 0;
+        background-color: #000000;
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+    }
+
+    .menu a:hover::after{
+        /* when we hover the menu, it be with a animation from left to right */
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+    .menu a.active{
+        font-weight: bold;
+        text-decoration: none;
+        pointer-events: none;
+    }
+}
+
+
+#sidebarMenu {
+    height: 100%;
+    position: fixed;
+    right: 0;
+    width: 250px;
+    transform: translateX(250px);
+    transition: transform 250ms ease-in-out;
+    background: linear-gradient(180deg, #987253 0%, #b4a86d 100%);
+}
+
+.sidebarMenuInner{
+    margin:0;
+    padding:0;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+.sidebarMenuInner li{
+    list-style: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+.sidebarMenuInner li span{
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.50);
+}
+.sidebarMenuInner li a{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+.openSidebarMenu:checked ~ #sidebarMenu {
+    transform: translateX(0);
+}
+
+input[type=checkbox] {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    display: none;
+}
+.sidebarIconToggle {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+    right: 23px;
+    width: 27px;
+}
+.spinner {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #000000;
+}
+.horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+.diagonal.part-1 {
+    position: relative;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    float: left;
+}
+.diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+.openSidebarMenu:checked ~ .sidebarIconToggle > .horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    opacity: 0;
+}
+.openSidebarMenu:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(135deg);
+    margin-top: 8px;
+}
+.openSidebarMenu:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(-135deg);
+    margin-top: -9px;
+}
+
