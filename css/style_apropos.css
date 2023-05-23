@@ -1,0 +1,381 @@
+/* reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'librebaskerville-regular', Arial, Helvetica, sans-serif;
+}
+
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.banner{
+    width: 100%;
+    height: 50vw;
+    background-image: url(../img/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.banner-text{
+    width: 100%;
+    padding: 20px;
+    margin: 15px;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+.banner-text h1{
+    margin:0;
+    padding: 0;
+    font-size: 32px;
+}
+
+.banner-text h2{
+    margin:0;
+    padding: 0;
+    font-size: 24px;
+}
+
+/* a card that will go a little bit on the banner ( the top of the card is on the banner) */
+.key_card{
+
+    text-align: center;
+    margin: 30px;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    margin-top:-20px;
+    z-index: 1;
+
+
+}
+
+.key_point{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.key_value{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.plus{ /*alignement des key_value ayant un + dans le texte */
+    margin-left: -1.5em;
+}
+
+.key_value h2{
+    font-family: librebaskerville-bold, Arial, Helvetica, sans-serif;
+    margin:0;
+    padding: 0;
+    font-size: 48px;
+}
+
+.key_point p{
+    margin:0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.tarifs{
+    margin-top:-40px;
+    position: relative;
+    z-index: 1;
+}
+
+.triangle_top {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 100vw solid transparent;
+}
+
+.triangle_bottom{
+    position: relative;
+    width: 0;
+    height: 0;
+    border-right: 100vw solid transparent;
+}
+
+.tarifs_shape_top{
+    border-bottom: 8vw solid #EAC999;
+}
+.tarifs_shape_bottom{
+    border-top: 8vw solid #EAC999;
+}
+
+
+.tarifs_content{
+    background-color: #EAC999;
+    padding-top: 30px;
+    padding-bottom:30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tarifs_content h2{
+    font-family: librebaskerville-bold, serif;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    margin:0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.tarifs_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tarif{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.description{
+    margin-top:-25px;
+    position: relative;
+    z-index: -1;
+}
+
+.description_shape_top{
+    border-bottom: 8vw solid #FFE8C6;
+}
+.description_shape_bottom{
+    border-top: 8vw solid #FFE8C6;
+}
+.description_content {
+    background: #FFE8C6;
+    padding: 20px 30px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.programme_background{
+    margin-top:-40px;
+    position: relative;
+    z-index: -2;
+    /*background image*/
+    background-image: url(../img/champs.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 830px;
+}
+
+/* a regrouper avec la classe key_card */
+/* a card that will go a little bit on the banner ( the top of the card is on the banner) */
+.programme_card{
+    text-align: center;
+    margin: 30px;
+    padding: 30px 8px;
+    background-color: #ffffff;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-top:-790px; /* mettre la taille de l'image -10*/
+    z-index: 1;
+}
+
+.programme_card>img{
+    width: 30%;
+    height: auto;
+
+}
+
+.key_point{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.key_value{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.plus{ /*alignement des key_value ayant un + dans le texte */
+    margin-left: -1.5em;
+}
+
+.key_value h2{
+    font-family: librebaskerville-bold , Arial, Helvetica, sans-serif;
+    margin:0;
+    padding: 0;
+    font-size: 36px;
+}
+
+.key_point p{
+    margin:0;
+    padding: 0;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+/* partenaires */
+.partenaires{ /* align the images to the left with no space between them */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    padding-top: 30px;
+    padding-bottom: 70px;
+    background-color: #000000;
+}
+
+.partenaires h2{
+    color: #ffffff;
+    font-family: librebaskerville-bold,Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.partenaire{
+    /* flexbox */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.partenaires-img{
+    /*if there is too many images, they will be on the next line*/
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 2px;
+    margin: 0;
+    width: 100%;
+}
+.partenaires-img img{
+    /* place the image in the center of the a */
+    display: block;
+    width: 10em;
+
+}
+.partenaires-img a{
+    margin: 0;
+    padding: 0;
+
+}
+
+.partenaires img:hover{
+    /* when we hover the image, it will be bigger */
+    transform: scale(1.1);
+    transition: transform 0.3s ease-out;
+}
+
+
+
+
+
+
+
+
+/* footer */
+.footer{
+    border-top:1px solid #ffffff;
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #000000;
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+}
+.text-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:5px;
+    padding: 0;
+    margin: 0;
+}
+
+.footer h2{
+    /* change the size*/
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.footer img{
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+
+
