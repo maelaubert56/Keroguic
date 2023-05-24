@@ -18,6 +18,19 @@
          url("../fonts/librebaskerville-bold-webfont.woff") format("woff");
 }
 
+@keyframes fadeintop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+
+
 .header{
     z-index: 10;
 }
@@ -53,6 +66,7 @@
 }
 
     /* logo */
+
     .logo a{
         /* flexbox */
         display: flex;
@@ -67,6 +81,11 @@
         width: 60px;
         height: 60px;
         border-radius: 25%;
+
+        animation: fadeintop 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 0s;
     }
 
     .logo-text{
@@ -77,6 +96,11 @@
         font-weight: bold;
         text-transform: uppercase;
         text-align: left;
+
+        animation: fadeintop 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 0.2s;
     }
 
     /* menu */
@@ -151,7 +175,15 @@ input[type=checkbox] {
     z-index: 99;
     right: 23px;
     width: 27px;
+
+    animation: fadeintop 1s;
+    animation-fill-mode: forwards;
+    opacity:0;
+    animation-delay: 0.6s;
 }
+
+
+
 .spinner {
     transition: all 0.3s;
     box-sizing: border-box;

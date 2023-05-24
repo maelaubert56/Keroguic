@@ -1,3 +1,33 @@
+
+
+@keyframes fadeinbottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeinfromleft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.fadeinfromleft{
+    animation: fadeinfromleft 1s;
+    animation-fill-mode: forwards;
+    opacity:0;
+}
+
 /* reset */
 *{
     margin: 0;
@@ -37,6 +67,12 @@
     align-items: center;
     text-align: center;
     color: #ffffff;
+
+
+    animation: fadeinbottom 1s;
+    animation-fill-mode: forwards;
+    opacity:0;
+    animation-delay: 0.4s;
 }
 
 .banner-text h1{
@@ -68,8 +104,6 @@
     gap: 30px;
     margin-top:-20px;
     z-index: 1;
-
-
 }
 
 .key_point{
@@ -103,6 +137,7 @@
     padding: 0;
     font-size: 14px;
 }
+
 
 .tarifs{
     margin-top:-55px;
@@ -226,7 +261,7 @@
 
 }
 
-.key_point{
+.programme_point{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -252,7 +287,7 @@
     font-size: 48px;
 }
 
-.key_point p{
+.programme_point p{
     margin:0;
     padding: 0;
     font-size: 14px;

@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 window.addEventListener("resize", function(){
     load_header();
-
-
 })
 
 
