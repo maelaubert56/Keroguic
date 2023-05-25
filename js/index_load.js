@@ -13,6 +13,8 @@ function animateValue(obj, start, end, duration) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    
+    // animate the value counters
     const objs = document.getElementsByClassName("key_point");
     console.log(objs);
     for (let i = 0; i < objs.length; i++) {
@@ -23,14 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     //TODO fix this
     
-    // hide all elements with the class "fade_in"
-    const elements = document.getElementsByClassName("fade_in");
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].style.display = "none";
-    }
+    // animation when we scroll to the element
     // then check constantly if the element is on the screen
     setInterval(function() {
-        /* when an element is fully on the screen, show it with a fade in effect from left or right */
+        // when an element is fully on the screen, show it with a fade in effect from left or right 
         const elements = document.getElementsByClassName("fade_in");
         // remove from the list the elements that are already visible
         

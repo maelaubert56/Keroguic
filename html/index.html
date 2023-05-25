@@ -15,48 +15,12 @@
     <link rel="stylesheet" href="../css/style.css">
     <!--js-->
     <script src="../js/header_load.js"></script>
+    <script src="../js/footer_load.js"></script>
     <script src="../js/index_load.js"></script>
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="top_header">
-            <p class="top_header_text">En raison des risques d'incendie, merci de ne pas jeter vos mégots par terre</p>
-        </div>
-        <div class="bottom_header">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="../img/logo.jpg" alt="logo">
-                    <span class="logo-text">Fête<br>des vieux<br>métiers</span>
-                </a>
-            </div>
-            <ul class="menu">
-                <li><a href="index.html" class="active">Accueil</a></li>
-                <li><a href="apropos.html">A propos</a></li>
-                <li><a href="carte.html">La carte du site</a></li>
-                <li><a href="programme.html">Programme</a></li>
-                <li><a href="galerie.html">Galerie</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-    <label for="openSidebarMenu" class="sidebarIconToggle">
-        <div class="spinner diagonal part-1"></div>
-        <div class="spinner horizontal"></div>
-        <div class="spinner diagonal part-2"></div>
-    </label>
-    <div id="sidebarMenu">
-        <ul class="sidebarMenuInner">
-            <li><a href="apropos.html">Keroguic <span>A propos</span></a></li>
-            <li><a href="apropos.html" target="_blank">La carte du site</a></li>
-            <li><a href="https://instagram.com/plavookac" target="_blank">Programme</a></li>
-            <li><a href="https://twitter.com/plavookac" target="_blank">Galerie</a></li>
-            <li><a href="https://www.youtube.com/channel/UCDfZM0IK6RBgud8HYGFXAJg" target="_blank">Contact</a></li>
-        </ul>
-    </div>
 
     <main>
         <div class="banner">
@@ -66,7 +30,7 @@
                 <h2>15 août 2023</h2>
             </div>
         </div>
-        <div class="key_card"> <!-- a card that will go a little bit on the banner -->
+        <div class="key_card fade_in"> <!-- a card that will go a little bit on the banner -->
             <div class="key_point" data-max=30>
                 <div class = "key_value">
                     <h2 class="value">30</h2>
@@ -115,12 +79,12 @@
         <div class="description">
             <div class="description_shape_top triangle_top"></div>
             <div class="description_content">
-                <p>La fête des vieux métiers est une fête organisée par la commune de Baud, dans le Morbihan, qui a lieu tous les ans le 15 août.<br>Elle a pour but de faire découvrir aux visiteurs les métiers d'autrefois, et de faire revivre les traditions de la région.</p>
+                <p class="fade_in">La fête des vieux métiers est une fête organisée par la commune de Baud, dans le Morbihan, qui a lieu tous les ans le 15 août.<br>Elle a pour but de faire découvrir aux visiteurs les métiers d'autrefois, et de faire revivre les traditions de la région.</p>
             </div>
             <div class="description_shape_bottom triangle_bottom"></div>
         </div>
         <div class="programme_background"></div>
-        <div class="programme_card"> <!-- a card that will go a little bit on the banner -->
+        <div class="programme_card fade_in"> <!-- a card that will go a little bit on the banner -->
             <div class="programme_point">
                 <div class = "key_value">
                     <h2>10h</h2>
@@ -169,14 +133,4 @@
                 </div>
         </div>
     </main>
-    <footer class="footer">
-        <div class = "text-footer">
-            <h2>Copyright © 2023 - Fête des vieux métiers</h2>
-            <h2>Site réalisé par Maël Aubert</h2>
-        </div>
-        <div class = "reseaux">
-            <a href="https://www.facebook.com/www.keroguic.fr"><img src="../img/facebook.svg" alt="facebook"></a>
-        </div>
-    </footer>
-
 </body>

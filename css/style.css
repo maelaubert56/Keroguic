@@ -28,6 +28,11 @@
     opacity:0;
 }
 
+
+.fade_in{
+    opacity: 0;
+}
+
 /* reset */
 *{
     margin: 0;

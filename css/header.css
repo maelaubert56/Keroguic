@@ -1,5 +1,4 @@
 /* font import */
-
 @font-face {
     font-family: "librebaskerville-regular";
     src: url("../fonts/librebaskerville-regular-webfont.woff2") format("woff2"),
@@ -18,6 +17,7 @@
          url("../fonts/librebaskerville-bold-webfont.woff") format("woff");
 }
 
+/* animations */
 @keyframes fadeintop {
     from {
         opacity: 0;
@@ -29,7 +29,27 @@
     }
 }
 
+@keyframes fadeinright {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
 
+@keyframes fadeinbottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
 
 .header{
     z-index: 10;
@@ -157,7 +177,6 @@
     text-decoration: none;
 }
 
-
 .openSidebarMenu:checked ~ #sidebarMenu {
     transform: translateX(0);
 }
@@ -176,7 +195,7 @@ input[type=checkbox] {
     right: 23px;
     width: 27px;
 
-    animation: fadeintop 1s;
+    animation: fadeinright 1s;
     animation-fill-mode: forwards;
     opacity:0;
     animation-delay: 0.6s;
@@ -236,7 +255,7 @@ input[type=checkbox] {
 
 
 /* media queries */
-@media screen and (min-width: 800px){
+@media screen and (min-width: 850px){
     .sidebarIconToggle{
         display: none;
     }
@@ -283,5 +302,54 @@ input[type=checkbox] {
         font-weight: bold;
         text-decoration: none;
         pointer-events: none;
+    }
+
+    /* animations of the menu (each li apears 0.2 seconds after the other) */
+    .menu li:nth-child(1){
+        animation: fadeinbottom 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 0.4s;
+    }
+    .menu li:nth-child(2){
+        animation: fadeinbottom 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 0.6s;
+    }
+
+.menu li:nth-child(3){
+        animation: fadeinbottom 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 0.8s;
+    }
+
+    .menu li:nth-child(4){
+        animation: fadeinbottom 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 1s;
+    }
+
+    .menu li:nth-child(5){
+        animation: fadeinbottom 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 1.2s;
+    }
+
+    .menu li:nth-child(6){
+        animation: fadeinbottom 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 1.4s;
+    }
+
+    .menu li:nth-child(7){
+        animation: fadeinbottom 1s;
+        animation-fill-mode: forwards;
+        opacity:0;
+        animation-delay: 1.6s;
     }
 }
