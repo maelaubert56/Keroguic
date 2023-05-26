@@ -52,7 +52,7 @@
 .banner{
     width: 100%;
     height: 35vh;
-    background-image: url(../img/banner.jpg);
+    background-image: url(../img/assets/banner.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -234,7 +234,7 @@
     position: relative;
     z-index: -2;
     /*background image*/
-    background-image: url(../img/champs.jpg);
+    background-image: url(../img/assets/champs.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -326,17 +326,6 @@
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
-    padding: 0;
-    margin: 0;
-}
-
-.partenaire{
-    /* flexbox */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
     padding: 0;
     margin: 0;
 }
