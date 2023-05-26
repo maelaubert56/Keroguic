@@ -24,20 +24,21 @@ const header = `
     </header>
     <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
     <label for="openSidebarMenu" class="sidebarIconToggle">
-        <div class="spinner diagonal part-1"></div>
-        <div class="spinner horizontal"></div>
-        <div class="spinner diagonal part-2"></div>
+        <span class="spinner diagonal part-1"></span>
+        <span class="spinner horizontal"></span>
+        <span class="spinner diagonal part-2"></span>
     </label>
     <div id="sidebarMenu">
-    <ul class="sidebarMenuInner">
-        <li><a href="apropos.html">Keroguic <span>A propos</span></a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="">La carte du site</a></li>
-        <li><a href="">Programme</a></li>
-        <li><a href="">Galerie</a></li>
-        <li><a href="">Contact</a></li>
-    </ul>
-</div>
+        <ul class="sidebarMenuInner">
+        <!-- on click on the li, redirect to the page -->
+            <li onclick="window.location.href='apropos.html'">Keroguic <span>A propos</span></li>
+            <li onclick="window.location.href='blog.html'">Blog</li>
+            <li onclick="window.location.href=''">La carte du site</li>
+            <li onclick="window.location.href=''">Programme</li>
+            <li onclick="window.location.href=''">Galerie</li>
+            <li onclick="window.location.href=''">Contact</li>
+        </ul>
+    </div>
 `;
 
 
