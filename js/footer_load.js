@@ -1,4 +1,5 @@
 const footer = `
+    <link rel="stylesheet" href="../css/footer.css">
     <footer class="footer">
         <div class = "text-footer">
             <h2>Copyright © 2023 - Fête des vieux métiers</h2>
