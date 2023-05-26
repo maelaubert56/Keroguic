@@ -9,7 +9,7 @@ function load_post(){
             var posts = data.posts;
             // get the id of the post in the url
             var url = new URL(window.location.href);
-            var id = url.searchParams.get("id");
+            var id = parseInt(url.searchParams.get("id"));
             // get the post
             for (var i = 0; i < posts.length; i++){
                 if (posts[i].id === id){
