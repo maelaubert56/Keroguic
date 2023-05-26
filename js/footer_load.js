@@ -6,7 +6,7 @@ const footer = `
             <h2>Site réalisé par Maël Aubert</h2>
         </div>
         <div class = "reseaux">
-            <a href="https://www.facebook.com/www.keroguic.fr"><img src="../img/facebook.svg" alt="facebook"></a>
+            <a href="https://www.facebook.com/www.keroguic.fr"><img src="../img/assets/facebook.svg" alt="facebook"></a>
         </div>
     </footer>
 `

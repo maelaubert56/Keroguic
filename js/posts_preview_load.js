@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 var posts_inserted = 0;
-const posts_to_insert = 3;
+const posts_to_insert = 10;
 
 function load_posts(){
     fetch("../json/posts.json")
@@ -12,7 +12,6 @@ function load_posts(){
     .then(data => {
         var posts = data.posts;
         // get the div where we will insert the posts
-        console.log("boutn")
         let posts_inserted_before = posts_inserted;
         for (var i = posts_inserted; i < posts_inserted_before + posts_to_insert; i++){
             if (posts_inserted >= posts.length) {
@@ -23,7 +22,7 @@ function load_posts(){
             console.log(i,"-",posts_inserted,"-",posts.length,"-",posts_to_insert)
             var posts_preview = document.querySelector(".posts");
             posts_preview.insertAdjacentHTML("beforeend", `
-                    <div class="post post_horizontal" id="1" onclick="window.location.href='post.html?id=${posts[i].id}'">
+                    <div class="post post_${posts[i].preview}" id="1" onclick="window.location.href='post.html?id=${posts[i].id}'">
                       <img src="${posts[i].image}" alt="image du post">
                       <div class="post_text">
                         <span class="post_date">${posts[i].date}</span>

@@ -17,7 +17,7 @@
 .banner{
     width: 100%;
     height: 50vw;
-    background-image: url(../img/banner.jpg);
+    background-image: url(../img/assets/banner.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -194,7 +194,7 @@
     position: relative;
     z-index: -2;
     /*background image*/
-    background-image: url(../img/champs.jpg);
+    background-image: url(../img/assets/champs.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -335,47 +335,6 @@
 
 
 
-
-
-
-
-/* footer */
-.footer{
-    border-top:1px solid #ffffff;
-    /* flex */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    background-color: #000000;
-    text-align: center;
-    padding: 30px;
-    margin: 0;
-}
-.text-footer{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap:5px;
-    padding: 0;
-    margin: 0;
-}
-
-.footer h2{
-    /* change the size*/
-    font-size: 13px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    padding: 0;
-    margin: 0;
-}
-
-.footer img{
-    width: 30px;
-    height: 30px;
-    margin: 0 10px;
-}
 
 
 

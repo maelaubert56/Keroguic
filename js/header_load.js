@@ -7,7 +7,7 @@ const header = `
         <div class="bottom_header">
             <div class="logo">
                 <a href="index.html">
-                    <img src="../img/logo.jpg" alt="logo">
+                    <img src="../img/assets/logo.jpg" alt="logo">
                     <span class="logo-text">Fête<br>des vieux<br>métiers</span>
                 </a>
             </div>
@@ -75,9 +75,9 @@ function update_header(){
     }
 
     /* set the position of the toggle icon */
-    var top_header_height = document.querySelector(".top_header").offsetHeight;
-    var bottom_header_height = document.querySelector(".bottom_header").offsetHeight;
-    var sidebarIconToggle_height = document.querySelector(".sidebarIconToggle").offsetHeight;
+    let top_header_height = document.querySelector(".top_header").offsetHeight;
+    let bottom_header_height = document.querySelector(".bottom_header").offsetHeight;
+    let sidebarIconToggle_height = document.querySelector(".sidebarIconToggle").offsetHeight;
     document.querySelector(".sidebarIconToggle").style.top = (top_header_height + bottom_header_height/2) - sidebarIconToggle_height/2 + "px";
 }
 
@@ -85,8 +85,11 @@ function load_header(){
 
     document.querySelector("body").insertAdjacentHTML("afterbegin", header);
     // add the class "active" to the current page
-    var current_page = window.location.pathname.split("/").pop();
-    document.querySelector(`.menu a[href="${current_page}"]`).classList.add("active");
+    let current_page = window.location.pathname.split("/").pop();
+
+    let menu = document.querySelector(`.menu a[href="${current_page}"]`)
+     if (menu != null) menu.classList.add("active");
+    
 
 }
 
