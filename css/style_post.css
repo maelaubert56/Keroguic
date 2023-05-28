@@ -101,6 +101,56 @@ span .post_author_name{
     color : black;
 }
 
+.comments_tab{
+    /* border raduis on the top left and right */
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border-radius: 1em 1em 0 0;
+
+
+
+}
+
+.comments_tab thead tr {
+    background-color: #586b3c;
+    color: #ffffff;
+    text-align: left;
+
+}
+
+.comments_tab th,
+.comments_tab td {
+    padding: 12px 15px;
+}
+
+.comments_tab tbody tr {
+    border-bottom: 1px solid #000000;
+}
+
+.comments_tab tbody tr{
+    background-color: #fde6c4;
+    color: #586b3c;
+}
+
+.comments_tab tbody tr:nth-of-type(even) {
+    background-color: #e8c798;
+}
+
+.comments_tab tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+
+
+
+
+
+
 @media screen and (min-width: 600px){
     .post{padding-top: 30px;}
     .post_content{width: 70%;}

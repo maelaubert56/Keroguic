@@ -10,6 +10,9 @@ function load_post(){
             // get the id of the post in the url
             var url = new URL(window.location.href);
             var id = parseInt(url.searchParams.get("id"));
+            if (isNaN(id)){
+                window.location.href = "index.html";
+            }
             // get the post
             for (var i = 0; i < posts.length; i++){
                 if (posts[i].id === id){
@@ -20,7 +23,7 @@ function load_post(){
             if(post.author_image===""){ post.author_image="../img/assets/logo.jpg"}
             // insert the post
             var main = document.querySelector("main");
-            main.insertAdjacentHTML("beforeend", `
+            main.insertAdjacentHTML("afterbegin", `
                 <div class="post post_${post.preview}">
                     <img class="img_horizontal" src="${post.image}" alt="}post">
                     <div class="post_content">

@@ -57,8 +57,8 @@ header{
 
 /* top header */
 .top_header{
+    display: none;
     background-color: #000000;
-    display: flex;
     justify-content: center;
     padding: 4px;
     margin: 0;
