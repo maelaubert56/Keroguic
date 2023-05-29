@@ -6,7 +6,15 @@
     box-sizing: border-box;
     font-family: librebaskerville-regular, serif;
 }
+
+header{
+    border-bottom:1px solid #bbbbbb;
+}
+
+
 main{
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,49 +109,163 @@ span .post_author_name{
     color : black;
 }
 
-.comments_tab{
-    /* border raduis on the top left and right */
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    border-radius: 1em 1em 0 0;
 
 
 
+
+/* comments */
+.comments{
+    width: 90vw;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-.comments_tab thead tr {
+.comments_form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+    margin: 30px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    /* height: only the needed height*/
+    height: fit-content;
+}
+
+.comments_form_name,.comment_form_content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+}
+
+.comments_form_name label,.comment_form_content label, .comments_form h3{
+    width: 100px;
+    font-size: 14px;
+    color: #808080;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.comments_form h3{
+    width: fit-content;
+}
+
+
+.comments_form_name input, .comment_form_content textarea{
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #808080;
+    background: #f0f0f0;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+.comments_form_name input:hover, .comment_form_content textarea:hover{
+    border: 2px solid #495933;
+}
+
+.comments_form_name input:focus, .comment_form_content textarea:focus{
+    border: 2px solid #586b3c;
+    outline: none;
+}
+
+
+.comment_form_content textarea{
+    height: 100px;
+}
+
+
+
+.comments_form .submit{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 14px;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: #ffffff;
+    border: 1px solid #586b3c;
+    color: #000000;
+}
+
+.comments_form .submit:hover{
+    /* transition and bigger n*/
+    transition: 0.5s;
+    transform: scale(1.1);
+    border:none;
     background-color: #586b3c;
     color: #ffffff;
-    text-align: left;
-
 }
+
+
+
+.comments_tab{
+    width: 100%;
+    border-collapse: collapse;
+    font-size:  14px;
+    font-family: sans-serif;
+    min-width: 400px;
+    overflow: hidden;
+    margin: 30px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    height: fit-content;
+}
+
 
 .comments_tab th,
 .comments_tab td {
     padding: 12px 15px;
 }
+.comments_tab thead tr{
+    border-bottom:1px solid #000000;
+}
+
 
 .comments_tab tbody tr {
-    border-bottom: 1px solid #000000;
+    font-size: 13px;
 }
 
-.comments_tab tbody tr{
-    background-color: #fde6c4;
-    color: #586b3c;
+.comments_tab thead tr, .comments_tab tbody tr{
+    background: white;
+    text-align: left;
+    color:black;
 }
+
+
 
 .comments_tab tbody tr:nth-of-type(even) {
-    background-color: #e8c798;
+    background-color: #f0f0f0;
 }
 
 .comments_tab tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: none;
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -152,13 +274,18 @@ span .post_author_name{
 
 
 @media screen and (min-width: 600px){
-    .post{padding-top: 30px;}
+    main{padding-top: 30px;}
     .post_content{width: 70%;}
 }
 @media screen and (min-width: 1000px){
-    .post{width: 80%;}
+    main{width: 80%;}
+    .comments{
+        flex-direction: row;
+    }
+
+
 }
 
 @media screen and (min-width: 1600px){
-    .post{width: 60%;}
+    main{width: 60%;}
 }

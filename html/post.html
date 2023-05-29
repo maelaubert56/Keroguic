@@ -15,6 +15,7 @@
   <script src="../js/header_load.js"></script>
   <script src="../js/footer_load.js"></script>
   <script src="../js/post_load.js"></script>
+  <script src="../js/comments_load_get.js"></script>
 
   <!-- css -->
     <link rel="stylesheet" href="../css/style_post.css">
@@ -23,6 +24,31 @@
 </head>
 <body>
 <main>
+  <div class="comments">
+    <form class="comments_form" method="post" onsubmit="event.preventDefault();add_comment()">
+      <h3>Ajouter un commentaire :</h3>
+      <div class="comments_form_name">
+        <label for="name">Nom</label>
+        <input type="text" name="name" id="name">
+      </div>
+      <div class="comment_form_content">
+        <label for="post_content">Contenu</label>
+        <textarea name="post_content" id="post_content" cols="30" rows="10" ></textarea>
+      </div>
+      <input class="submit" type="submit" value="Publier">
+    </form>
+    <table class="comments_tab">
+      <thead>
+          <tr>
+              <th>Nom</th>
+              <th>Date de publication</th>
+              <th>Commentaire</th>
+          </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
 </main>
 
 </body>
