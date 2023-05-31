@@ -16,6 +16,12 @@
   <script src="../js/footer_load.js"></script>
   <script src="../js/post_load.js"></script>
   <script src="../js/comments_load_get.js"></script>
+  <script src="../json/comments.json"></script>
+  <script>
+    // get the data
+    let comments = JSON.parse(localStorage.getItem('comments'));
+    console.log(comments);
+  </script>
 
   <!-- css -->
     <link rel="stylesheet" href="../css/style_post.css">
