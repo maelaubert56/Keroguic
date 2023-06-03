@@ -13,12 +13,12 @@ const header = `
             </div>
             <ul class="menu">
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="apropos.html">A propos</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="carte.html">La carte du site</a></li>
-                <li><a href="programme.html">Programme</a></li>
-                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="404.html">La carte du site</a></li>
+                <li><a href="404.html">Programme</a></li>
+                <li><a href="404.html">Galerie</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                
             </ul>
         </div>
     </header>
