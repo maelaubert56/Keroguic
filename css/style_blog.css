@@ -40,6 +40,7 @@ main {
     height: 400px;
     border-radius: 15px;
     border: white 1px solid;
+    transition: all 0.2s ease-in-out;
     box-shadow: 0 0 15px rgba(0, 0, 0, 1);
 }
 
@@ -140,5 +141,31 @@ main {
     color: #000000;
 }
 
+.load_posts{
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 10px 40px;
+    font-family: roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #FFFFFF;
+    margin: 20px;
+    background-color: #000000;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.load_posts:hover{
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.1);
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #000000;
 
 
+
+
+}
