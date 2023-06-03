@@ -24,9 +24,9 @@ function load_post(){
             // insert the post
             var main = document.querySelector("main");
             main.insertAdjacentHTML("afterbegin", `
-                <div class="post post_${post.preview}">
+                <article class="post post_${post.preview}">
                     <img class="img_horizontal" src="${post.image}" alt="}post">
-                    <div class="post_content">
+                    <section class="post_content">
                         <h1 class="post_title">${post.title}</h1>
                         <div class="post_text">
                             <img class="img_vertical" src="${post.image}" alt="post">
@@ -41,8 +41,8 @@ function load_post(){
                           </span>
                         </div>
                       </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
             `);
         })
         .catch(error => console.log(error));

@@ -1,46 +1,55 @@
 
 // load the comments of the post
 document.addEventListener("DOMContentLoaded", function() {
+    // if the local storage is empty, fill it with the json file
+    if (localStorage.getItem("comments") === null){
+        fetch("../json/comments.json")
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem("comments", JSON.stringify(data));
+        })
+        console.log("reset");
+    }
+    // add the comments to the table
     add_posts_to_table();
 })
 
 
 function add_posts_to_table(){
-    fetch("../json/comments.json")
-    .then(response => response.json())
-    .then(data => {
-        var comments = data.comments;
-        // get the id of the post in the url
-        var url = new URL(window.location.href);
-        var id = parseInt(url.searchParams.get("id"));
-        if (isNaN(id)){
-            window.location.href = "index.html";
-        }
 
-        // get the comments with the id of the post
-        comments = comments.filter(comment => comment.id_post === id);
-        // insert on the table
-        var table = document.querySelector("tbody");
-        // if there is no comment
-        if (comments.length === 0){
-            table.insertAdjacentHTML("beforeend", `
-                <tr>
-                    <td id="no_comments" colspan="3">Il n'y a pas encore de commentaire</td>
-                </tr>
-            `);
-        }
-        for (var i = 0; i < comments.length; i++){
-            var comment = comments[i];
-            table.insertAdjacentHTML("beforeend", `
-                <tr>
-                    <td>${comment.name}</td>
-                    <td>${comment.date}</td>
-                    <td>${comment.content}</td>
-                </tr>
-            `);
+    // get the comments from the local storage
+    var comments = JSON.parse(localStorage.getItem("comments")).comments;
+    console.log(comments)
+    // get the id of the post in the url
+    var url = new URL(window.location.href);
+    var id = parseInt(url.searchParams.get("id"));
+    if (isNaN(id)){
+        window.location.href = "index.html";
+    }
 
-        }
-    })
+    // get the comments with the id of the post
+    comments = comments.filter(comment => comment.id_post === id);
+    // insert on the table
+    var table = document.querySelector("tbody");
+    // if there is no comment
+    if (comments.length === 0){
+        table.insertAdjacentHTML("beforeend", `
+            <tr>
+                <td id="no_comments" colspan="3">Il n'y a pas encore de commentaire</td>
+            </tr>
+        `);
+    }
+    for (var i = 0; i < comments.length; i++){
+        var comment = comments[i];
+        table.insertAdjacentHTML("beforeend", `
+            <tr>
+                <td>${comment.name}</td>
+                <td>${comment.date}</td>
+                <td>${comment.content}</td>
+            </tr>
+        `);
+
+    }
 }
 
 // add a comment
@@ -84,4 +93,20 @@ function add_comment(){
     // clear the form
     document.querySelector("#name").value = "";
     document.querySelector("#post_content").value = "";
+    
+    //add the comment to the local storage
+    var comments = JSON.parse(localStorage.getItem("comments")).comments;
+    var url = new URL(window.location.href);
+    var id = parseInt(url.searchParams.get("id"));
+    comments.push({
+        "id_comment": comments.length + 1,
+        "id_post": id,
+        "name": name,
+        "date": date,
+        "content": content
+    });
+    localStorage.setItem("comments", JSON.stringify({"comments": comments}));
+
+
+
 }
