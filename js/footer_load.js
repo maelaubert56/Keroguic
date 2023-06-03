@@ -11,7 +11,7 @@ const footer = `
     <footer class="footer">
         <div class = "text-footer">
             <h2>Copyright © 2023 - Fête des vieux métiers</h2>
-            <h2>Site réalisé par Maël Aubert</h2>
+            <h2>Site réalisé par Maël Aubert & Marius Chevailler</h2>
         </div>
         <div class = "reseaux">
             <a href="https://www.facebook.com/www.keroguic.fr"><img src="../img/assets/facebook.svg" alt="facebook"></a>

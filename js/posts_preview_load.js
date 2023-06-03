@@ -22,15 +22,15 @@ function load_posts(){
             console.log(i,"-",posts_inserted,"-",posts.length,"-",posts_to_insert)
             var posts_preview = document.querySelector(".posts");
             posts_preview.insertAdjacentHTML("beforeend", `
-                    <div class="post post_${posts[i].preview}" id="1" onclick="window.location.href='post.html?id=${posts[i].id}'">
+                    <article class="post post_${posts[i].preview}" id="1" onclick="window.location.href='post.html?id=${posts[i].id}'">
                       <img src="${posts[i].image}" alt="image du post">
-                      <div class="post_text">
+                      <section class="post_text">
                         <span class="post_date">${posts[i].date}</span>
                         <h2 class="post_title">${posts[i].title}</h2>
                         <p class="post_preview">${posts[i].content}</p>
                         <p class="post_more">Cliquez pour voir plus</p>
-                      </div>
-                    </div>
+                      </section>
+                    </article>
                 `);
             posts_inserted++;
         }
