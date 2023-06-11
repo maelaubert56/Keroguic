@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
         animateValue(objs[i].querySelector(".value"), 0, max, 1500)
     }
     
-    //TODO fix this
-    
     // animation when we scroll to the element
     // then check constantly if the element is on the screen
     setInterval(function() {
