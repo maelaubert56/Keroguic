@@ -108,9 +108,7 @@
     gap: 5px;
 }
 
-.plus{ /*alignement des key_value ayant un + dans le texte */
-    margin-left: -1.5em;
-}
+
 
 .key_value h2{
     font-family: librebaskerville-bold, Arial, Helvetica, sans-serif;
@@ -262,9 +260,7 @@
     gap: 5px;
 }
 
-.plus{ /*alignement des key_value ayant un + dans le texte */
-    margin-left: -1.5em;
-}
+
 
 .key_value h2{
     font-family: librebaskerville-bold , Arial, Helvetica, sans-serif;
@@ -310,49 +306,6 @@
     padding: 0;
     margin: 0;
 }
-
-.partenaire{
-    /* flexbox */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 0;
-    margin: 0;
-}
-
-.partenaires-img{
-    /*if there is too many images, they will be on the next line*/
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 2px;
-    margin: 0;
-    width: 100%;
-}
-.partenaires-img img{
-    /* place the image in the center of the a */
-    display: block;
-    width: 10em;
-
-}
-.partenaires-img a{
-    margin: 0;
-    padding: 0;
-
-}
-
-.partenaires img:hover{
-    /* when we hover the image, it will be bigger */
-    transform: scale(1.1);
-    transition: transform 0.3s ease-out;
-}
-
 
 
 

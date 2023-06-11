@@ -30,7 +30,6 @@ const header = `
     </label>
     <div id="sidebarMenu">
         <ul class="sidebarMenuInner">
-        <!-- on click on the li, redirect to the page -->
             <li onclick="window.location.href='apropos.html'">Keroguic <span>A propos</span></li>
             <li onclick="window.location.href='blog.html'">Blog</li>
             <li onclick="window.location.href='map.html'">La carte du site</li>
