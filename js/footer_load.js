@@ -15,6 +15,8 @@ const footer = `
         </div>
         <div class = "reseaux">
             <a href="https://www.facebook.com/www.keroguic.fr"><img src="../img/assets/facebook.svg" alt="facebook"></a>
+            <!-- email -->
+            <a href="mailto:bureau.vieux-metiers@orange.fr"><img class = mail src="../img/assets/email.png" alt="email"></a>
         </div>
     </footer>
 `
