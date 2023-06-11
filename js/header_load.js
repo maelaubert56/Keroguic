@@ -16,7 +16,7 @@ const header = `
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="map.html">La carte du site</a></li>
                 <li><a href="404.html">Programme</a></li>
-                <li><a href="404.html">Galerie</a></li>
+                <li><a href="galery.html">Galerie</a></li>
                 <li><a href="apropos.html">A propos</a></li>
                 
             </ul>

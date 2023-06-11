@@ -36,6 +36,8 @@ function show_image(id){
             }
         }
         )
+        .catch(error => console.log(error));
+
 }
 
 function close_image(){
