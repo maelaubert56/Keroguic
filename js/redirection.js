@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var counter = 5;
     var interval = setInterval(function() {
         counter--;
-        document.querySelector("#counter").innerHTML = counter;
+        document.querySelector("#counter").innerHTML = counter.toString();
         if (counter === 0) {
             clearInterval(interval);
             window.location.href = "index.html";
