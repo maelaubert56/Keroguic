@@ -1,6 +1,7 @@
 {
   "posts": [
-    {"id":1,
+    {
+      "id":1,
       "date":"05/05/2023",
       "title":"Les machines anciennes à l'honneur à la Fête de Kéroguic : Un voyage dans le passé de l'agriculture",
       "author":"Nicolas Dubois",
@@ -9,7 +10,8 @@
       "image":"https://picsum.photos/1000/700?i",
       "preview":"vertical"
     },
-    {"id":2,
+    {
+      "id":2,
       "date":"26/06/2023",
         "title":"La Fête de Kéroguic : Un voyage dans le temps à la découverte des vieux métiers",
         "author":"Marie Leclerc",
