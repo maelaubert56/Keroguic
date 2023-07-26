@@ -2,7 +2,7 @@ const header = `
     <link rel="stylesheet" href="../css/header.css">
     <header>
         <div class="top_header">
-            <p class="top_header_text">En raison des risques d'incendie, merci de ne pas jeter vos mégots par terre</p>
+            <p class="top_header_text">Ce site est actuellement en cours de développement... Pour plus d'informations, redez vous sur le <a href="https://www.facebook.com/www.keroguic.fr" style ="">Facebook</a> de la fête</p>
         </div>
         <div class="bottom_header">
             <div class="logo">

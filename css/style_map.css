@@ -48,6 +48,22 @@ main{
     flex-direction: column;
 }
 
+h1{
+    margin-top:30px;
+}
+
+.plan{
+    width: 80%;
+    margin:30px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 /* a card that will go a little bit on the banner ( the top of the card is on the banner) */
 .map_container{
