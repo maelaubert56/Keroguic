@@ -16,7 +16,7 @@
         "title":"Petit reportage sur la fête des vieux métiers",
         "author":"Breizh-info",
         "author_image":"../img/profile_pictures/profile1.jpg",
-        "content": "<a href=\"https://youtu.be/FIyIzrLLJf4\">Lien vers la vidéo</a>",
+        "content": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/FIyIzrLLJf4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>",
         "image":"../img/images_blog/post2.webp",
         "preview":"horizontal"
     },
@@ -30,12 +30,30 @@
       "preview":"vertical"
     },
     {"id":4,
-      "date":"15/06/2023",
-      "title":"La reconstitution historique du métier de sabotier à la Fête de Kéroguic : Quand l'artisanat rencontre l'histoire",
-      "author":"Jeanne Martin",
-      "author_image":"",
-      "content": "Chaque année, lors de la Fête de Kéroguic qui se déroule le 15 août à Baud, en Bretagne, les visiteurs ont l'occasion unique d'assister à une reconstitution historique fascinante : celle du métier de sabotier. Cet événement met en lumière l'artisanat traditionnel et offre un aperçu précieux de la vie et du travail des sabotiers d'autrefois.<br><br>Les sabotiers, des artisans spécialisés dans la fabrication de sabots en bois, étaient autrefois des acteurs clés de l'économie locale. À la Fête de Kéroguic, des artisans passionnés se prêtent au jeu de la reconstitution historique, recréant avec minutie chaque étape du processus de fabrication des sabots.<br><br>Au cœur de la forêt de Kéroguic, un atelier est installé, rappelant ceux utilisés autrefois par les sabotiers. Les visiteurs peuvent observer de près les outils traditionnels tels que les couteaux, les gouges et les rabots, utilisés pour sculpter le bois et façonner les sabots. Les artisans expliquent leur savoir-faire ancestral, partageant leur passion et répondant aux questions curieuses des visiteurs.<br><br>La reconstitution ne se limite pas à la démonstration de l'artisanat, elle offre également un aperçu de l'environnement de travail des sabotiers. Des éléments d'époque, tels que des machines anciennes, des établis et des matériaux traditionnels, sont utilisés pour recréer l'ambiance authentique de l'époque. Les visiteurs sont plongés dans un véritable voyage dans le temps, où l'odeur du bois fraîchement sculpté et le bruit des outils résonnent à travers la forêt.<br><br>Au-delà de la reconstitution, la Fête de Kéroguic permet également de sensibiliser les visiteurs à l'importance de préserver ces métiers traditionnels. Les sabotiers d'aujourd'hui perpétuent un héritage culturel précieux et contribuent à maintenir vivante cette part de l'histoire bretonne. En appréciant leur travail et en comprenant les défis auxquels ils sont confrontés, les visiteurs sont encouragés à soutenir l'artisanat local et à valoriser ces savoir-faire uniques.<br><br>La reconstitution historique du métier de sabotier à la Fête de Kéroguic est un événement à ne pas manquer pour les amateurs d'artisanat, d'histoire et de traditions. En vous plongeant dans cet univers fascinant, vous découvrirez l'importance de préserver ces vieux métiers et de transmettre leur héritage aux générations futures.<br><br>Rejoignez-nous le 15 août prochain à la Fête de Kéroguic pour revivre l'épopée des sabotiers et vous immerger dans l'atmosphère d'une époque révolue, où le travail de la main était roi.",
-      "image":"https://picsum.photos/1000/700?i",
+      "date":"16/08/2022",
+      "title":"[Images] Fest Noz - 15 août 2022",
+      "author":"Kéroguic",
+      "author_image":"../img/profile_pictures/keroguic.jpg",
+      "content": "Le fest Noz attire toujours autant d’amateurs de danses bretonnes et de fans des SONERIEN DU",
+      "image":"../img/images_blog/post4.jpg",
+      "preview":"vertical"
+    },
+    {"id":5,
+      "date":"16/08/2022",
+      "title":"Merci à tous les bénévoles !",
+      "author":"Kéroguic",
+      "author_image":"../img/profile_pictures/keroguic.jpg",
+      "content": "Merci à tous les bénévoles de cette fête des vieux métiers qui ont permis de faire de cette édition de reprise une édition une fois de plus réussie grâce à l’investissement de chacun. \nMerci à la météo \uD83D\uDE09 de nous avoir apporté un peu de pluie la veille ce qui a permis d’apaiser toutes les tensions générées par cette canicule \uD83E\uDD75",
+      "image":"../img/images_blog/post5.jpg",
+      "preview":"horizontal"
+    },
+    {"id":6,
+      "date":"14/07/2022",
+      "title":"L'affiche de l'édition 2022",
+      "author":"Kéroguic",
+      "author_image":"../img/profile_pictures/keroguic.jpg",
+      "content": "L’affiche de cette édition 2022 ; nous vous attendons encore plus nombreux que les années précédentes",
+      "image":"../img/images_blog/post6.jpg",
       "preview":"vertical"
     }
   ]
