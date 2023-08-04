@@ -353,6 +353,10 @@
     .triangle_content{
         padding: 70px 30px;
     }
+
+    .description{
+        margin-top:-10px;
+    }
 }
 
 
@@ -367,6 +371,11 @@
         align-items: center;
         justify-content: space-around;
     }
+
+    .tarifs_content{
+        gap: 30px;
+    }
+
     .key_card_top,.key_card_bottom{
         width: 50%;
         flex-direction: row;
@@ -380,6 +389,7 @@
         align-items: center;
         justify-content: space-evenly;
     }
+
 
     .programme_background{
         height: 500px;
@@ -395,8 +405,7 @@
     }
 
 
-
-    .programme_card img{ display:none}
+    .programme_card img{display:none}
 }
 
 

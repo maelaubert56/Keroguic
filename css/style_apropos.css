@@ -16,7 +16,6 @@
 
 .banner{
     width: 100%;
-    height: 40vh;
     background-image: url(../img/assets/banner.jpg);
     background-size: cover;
     background-position: center;
@@ -72,63 +71,6 @@
     animation-delay: 0.8s;
 }
 
-/* a card that will go a little bit on the banner ( the top of the card is on the banner) */
-.key_card{
-
-    text-align: center;
-    margin: 30px;
-    padding: 30px;
-    background-color: #ffffff;
-    box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 30px;
-    margin-top:-20px;
-    z-index: 1;
-
-
-}
-
-.key_point{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.key_value{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 5px;
-}
-
-
-
-.key_value h2{
-    font-family: librebaskerville-bold, Arial, Helvetica, sans-serif;
-    margin:0;
-    padding: 0;
-    font-size: 48px;
-}
-
-.key_point p{
-    margin:0;
-    padding: 0;
-    font-size: 14px;
-}
-
-.tarifs{
-    margin-top:-40px;
-    position: relative;
-    z-index: 1;
-}
-
 .triangle_top {
     position: relative;
     width: 0;
@@ -143,56 +85,16 @@
     border-right: 100vw solid transparent;
 }
 
-.tarifs_shape_top{
-    border-bottom: 8vw solid #EAC999;
-}
-.tarifs_shape_bottom{
-    border-top: 8vw solid #EAC999;
-}
-
-
-.tarifs_content{
-    background-color: #EAC999;
-    padding-top: 30px;
-    padding-bottom:30px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.tarifs_content h2{
-    font-family: librebaskerville-bold, serif;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    margin:0;
-    padding: 0;
-    font-size: 20px;
-}
-
-.tarifs_container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.tarif{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 10px;
-}
-
 
 .description{
-    margin-top:-25px;
     position: relative;
     z-index: -1;
+}
+
+.description_cut{
+    margin-top:-40px;
+    z-index: -1;
+    position: relative;
 }
 
 .description_shape_top{
@@ -204,8 +106,30 @@
 .description_content {
     background: #FFE8C6;
     padding: 20px 30px;
+    font-size: 14px;
+    text-align: justify;
+    color: #000000;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     line-height: 1.5;
-    text-align: center;
+}
+
+.description_content .signature{
+    font-size: 12px;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.signature img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.description_content p{
+    margin: 10px 0;
 }
 
 .programme_background{
@@ -242,70 +166,40 @@
 .programme_card>img{
     width: 30%;
     height: auto;
-
 }
 
-.key_point{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+@media screen and (min-width: 500px) {
+
+    .programme_background {
+        height: 350px;
+    }
+
+    .programme_card{
+        margin-top:-250px;
+        margin-bottom: 100px;
+    }
+
+
+    .key_card{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .key_card_top,.key_card_bottom{
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .triangle_top{display:none;}
+    .triangle_bottom{display:none;}
+    .triangle_content{
+        padding: 40px 30px;
+    }
 }
 
-.key_value{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 5px;
-}
-
-
-
-.key_value h2{
-    font-family: librebaskerville-bold , Arial, Helvetica, sans-serif;
-    margin:0;
-    padding: 0;
-    font-size: 36px;
-}
-
-.key_point p{
-    margin:0;
-    padding: 0;
-    font-size: 14px;
-}
-
-
-
-
-
-
-
-
-
-
-/* partenaires */
-.partenaires{ /* align the images to the left with no space between them */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 30px;
-    padding-top: 30px;
-    padding-bottom: 70px;
-    background-color: #000000;
-}
-
-.partenaires h2{
-    color: #ffffff;
-    font-family: librebaskerville-bold,Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-}
 
 
 
