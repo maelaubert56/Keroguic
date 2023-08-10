@@ -293,11 +293,14 @@
     font-size: 30px;
 }
 
+.programme_point>.key_value>h3{
+    font-size: 25px;
+}
+
 
 .programme_card>img{
     width: 100px;
     height: auto;
-
 }
 
 .programme_point{

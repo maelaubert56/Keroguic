@@ -2,7 +2,7 @@ const header = `
     <link rel="stylesheet" href="../css/header.css">
     <header>
         <div class="top_header">
-            <p class="top_header_text">Ce site est actuellement en cours de développement... Pour plus d'informations, redez vous sur le <a href="https://www.facebook.com/www.keroguic.fr" style ="">Facebook</a> de la fête</p>
+            <p class="top_header_text">Ce site est actuellement en cours de développement... Pour plus d'informations, rendez vous sur le Facebook de la fête</p><img src="../img/assets/index_pointing_right.png" alt="pointing right"><a href="https://www.facebook.com/www.keroguic.fr"><img src="../img/assets/facebook.svg" alt="facebook"></a>
         </div>
         <div class="bottom_header">
             <div class="logo">
