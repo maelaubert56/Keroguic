@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
-const authenticateToken = require("./helpers/authMiddleware.js");
+const { authenticateToken, getUser } = require("./helpers/authMiddleware.js");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 require("dotenv").config();
@@ -17,17 +17,76 @@ router.get("/", authenticateToken, async function (req, res) {
     include: {
       author: true,
     },
+    orderBy: {
+      date: "desc",
+    },
   });
   res.json(posts);
 });
 
-router.get("/:id", authenticateToken, async function (req, res) {
+router.get("/page/:page", getUser, async function (req, res) {
+  try {
+    var postPerPage = 12;
+    if (req.query.nb) {
+      postPerPage = parseInt(req.query.nb);
+    }
+    const page = req.params.page;
+
+    // if page is negative or nan, return an error
+    if (page <= 0 || isNaN(page)) {
+      res.status(400).json({ error: "Invalid page number" });
+      return;
+    }
+
+    var posts = [];
+    if (req.user && req.query.all === "true") {
+      posts = await prisma.posts.findMany({
+        include: {
+          author: true,
+        },
+        orderBy: {
+          date: "desc",
+        },
+        skip: (page - 1) * postPerPage,
+        take: postPerPage,
+      });
+    } else {
+      posts = await prisma.posts.findMany({
+        include: {
+          author: true,
+        },
+        orderBy: {
+          date: "desc",
+        },
+        where: {
+          published: true,
+        },
+        skip: (page - 1) * postPerPage,
+        take: postPerPage,
+      });
+    }
+
+    const totalPosts = await prisma.posts.count();
+    const totalPages = Math.ceil(totalPosts / postPerPage);
+
+    res.json({ posts, totalPages, totalPosts });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/:id", async function (req, res) {
   try {
     const id = req.params.id;
 
     const post = await prisma.posts.findUnique({
       where: {
         id: id,
+        published: true,
+      },
+      include: {
+        author: true,
       },
     });
     if (post === null) {
@@ -35,17 +94,27 @@ router.get("/:id", authenticateToken, async function (req, res) {
       return;
     }
 
-    // give the article only if the user is admin or owner or editor of the post OR is the author of the post
+    res.json(post);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
-    if (
-      req.user.privilege !== "admin" &&
-      req.user.privilege !== "owner" &&
-      req.user.privilege !== "editor" &&
-      req.user.id !== post.authorId
-    ) {
-      res
-        .status(403)
-        .json({ error: "You are not allowed to access this post" });
+router.get("/edit/:id", authenticateToken, async function (req, res) {
+  try {
+    const id = req.params.id;
+
+    const post = await prisma.posts.findUnique({
+      where: {
+        id: id,
+      },
+      include: {
+        author: true,
+      },
+    });
+    if (post === null) {
+      res.status(404).json({ error: "Post not found" });
       return;
     }
 
@@ -57,7 +126,7 @@ router.get("/:id", authenticateToken, async function (req, res) {
 });
 
 router.post("/", authenticateToken, async function (req, res) {
-  const { title, content, author, date } = req.body;
+  const { title, content, published, author, date } = req.body;
   // if the user is admin or owner or editor of the post, then he can put any authorId
   if (req.user.privilege === "editor" && req.user.id !== author) {
     res
@@ -70,6 +139,7 @@ router.post("/", authenticateToken, async function (req, res) {
     data: {
       title,
       content,
+      published,
       authorId: author,
       date,
     },
@@ -80,7 +150,7 @@ router.post("/", authenticateToken, async function (req, res) {
 router.put("/:id", authenticateToken, async function (req, res) {
   try {
     const id = req.params.id;
-    const { title, content, author, date } = req.body;
+    const { title, content, published, author, date } = req.body;
 
     const post = await prisma.posts.findUnique({
       where: {
@@ -119,6 +189,7 @@ router.put("/:id", authenticateToken, async function (req, res) {
       data: {
         title,
         content,
+        published,
         authorId: author,
         date,
       },

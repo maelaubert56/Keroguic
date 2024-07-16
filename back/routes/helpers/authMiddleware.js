@@ -36,4 +36,46 @@ function authenticateToken(req, res, next) {
   });
 }
 
-module.exports = authenticateToken;
+function getUser(req, res, next) {
+  try {
+    const token = req.header("Authorization");
+    if (!token || token === undefined || token === "null") {
+      req.user = null;
+      next();
+    } else {
+      jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) {
+          console.log(err);
+          req.user = null;
+          next();
+        }
+
+        prisma.users
+          .findUnique({
+            where: { username: user.username },
+          })
+          .then((user2) => {
+            if (!user2) {
+              console.log("User not found");
+              return res
+                .status(403)
+                .json({ message: "Forbidden: Invalid token" });
+            } else if (user.password !== user2.password) {
+              console.log("Invalid password");
+              return res
+                .status(403)
+                .json({ message: "Forbidden: Invalid token" });
+            }
+            console.log(`Ok (${user2.username})\n`);
+            req.user = user2;
+            next();
+          });
+      });
+    }
+  } catch (error) {
+    req.user = null;
+    next();
+  }
+}
+
+module.exports = { authenticateToken, getUser };

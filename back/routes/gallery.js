@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
-const authenticateToken = require("./helpers/authMiddleware.js");
+const { authenticateToken, getUser } = require("./helpers/authMiddleware.js");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 require("dotenv").config();
@@ -32,8 +32,63 @@ router.get("/", authenticateToken, async function (req, res) {
     include: {
       author: true,
     },
+    orderBy: {
+      date: "desc",
+    },
   });
   res.json(images);
+});
+
+router.get("/page/:page", getUser, async function (req, res) {
+  try {
+    var imagePerPage = 12;
+    if (req.query.nb) {
+      imagePerPage = parseInt(req.query.nb);
+    }
+    const page = req.params.page;
+
+    // if page is negative or nan, return an error
+    if (page <= 0 || isNaN(page)) {
+      res.status(400).json({ error: "Invalid page number" });
+      return;
+    }
+
+    var images = [];
+    if (req.user && req.query.all === "true") {
+      images = await prisma.gallery.findMany({
+        include: {
+          author: true,
+        },
+        orderBy: {
+          date: "desc",
+        },
+        skip: (page - 1) * imagePerPage,
+        take: imagePerPage,
+      });
+    } else {
+      images = await prisma.gallery.findMany({
+        include: {
+          author: true,
+        },
+        orderBy: {
+          date: "desc",
+        },
+        where: {
+          published: true,
+        },
+        skip: (page - 1) * imagePerPage,
+        take: imagePerPage,
+      });
+    }
+
+    const totalImages = await prisma.gallery.count();
+    const totalPages = Math.ceil(totalImages / imagePerPage);
+
+    res.json({ images, totalPages, totalImages });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 router.get("/:id", authenticateToken, async function (req, res) {
@@ -50,20 +105,6 @@ router.get("/:id", authenticateToken, async function (req, res) {
       return;
     }
 
-    // give the article only if the user is admin or owner or editor of the image OR is the author of the image
-
-    if (
-      req.user.privilege !== "admin" &&
-      req.user.privilege !== "owner" &&
-      req.user.privilege !== "editor" &&
-      req.user.id !== image.authorId
-    ) {
-      res
-        .status(403)
-        .json({ error: "You are not allowed to access this image" });
-      return;
-    }
-
     res.json(image);
   } catch (error) {
     console.log(error);
@@ -76,13 +117,20 @@ router.post(
   authenticateToken,
   upload.single("image"),
   async function (req, res) {
-    const { title, date, author } = req.body;
+    var { title, date, author, published } = req.body;
     const image = req.file.filename;
+    console.log(published);
+    if (published === "true") {
+      published = true;
+    } else {
+      published = false;
+    }
 
     const newImage = await prisma.gallery.create({
       data: {
         title: title,
         image: image,
+        published: published,
         date: date,
         authorId: author,
       },
@@ -128,7 +176,7 @@ router.put(
   async function (req, res) {
     try {
       const id = req.params.id;
-      var { title, author, date } = req.body;
+      var { title, author, date, published } = req.body;
 
       const imageData = await prisma.gallery.findUnique({
         where: {
@@ -199,6 +247,7 @@ router.put(
             title,
             image: id + path.extname(req.file.originalname),
             authorId: author,
+            published,
             date,
           },
         });
@@ -211,6 +260,7 @@ router.put(
           data: {
             title,
             authorId: author,
+            published,
             date,
           },
         });

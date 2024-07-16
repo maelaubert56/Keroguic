@@ -32,10 +32,10 @@ const handleError = (e, obj = undefined) => {
 const usersRequest = () => {
   const users = [
     {
-      username: "elianeaubert",
-      name: "Éliane Aubert",
+      username: "root",
+      name: "root",
       password: "$2a$10$Buckb7hNhzVxZqswq/mBm.pIyMuX0A2KTElyBYjXxkZw70ks2ncJW",
-      privilege: "admin",
+      privilege: "owner",
       picture: "https://randomuser.me/api/portraits/women/29.jpg",
     },
   ];

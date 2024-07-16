@@ -76,7 +76,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="bg-[#FFE8C6] text-lg -z-10  py-20 px-6 text-center flex flex-col justify-center items-center gap-2">
+      <div className="bg-[#FFE8C6] -z-10  py-20 px-6 text-center flex flex-col justify-center items-center gap-2">
         <p>
           La fête des vieux métiers est une fête organisée dans la commune de
           Baud, dans le Morbihan, qui a lieu tous les ans le 15 août.

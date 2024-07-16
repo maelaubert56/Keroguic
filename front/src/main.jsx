@@ -5,10 +5,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 
 import Home from "./pages/Home";
+import APropos from "./pages/APropos";
+import Carte from "./pages/Carte";
 import Blog from "./pages/blog/Blog";
 import Article from "./pages/blog/Article";
 import Gallery from "./pages/gallery/Gallery";
-import Admin from "./pages/admin/Admin";
+import Admin from "./pages/admin/homeAdmin/Admin";
 import AddArticle from "./pages/admin/article/Add";
 import EditArticle from "./pages/admin/article/Edit";
 import AddGallery from "./pages/admin/gallery/Add";
@@ -17,6 +19,8 @@ import AddUser from "./pages/admin/users/Add";
 import EditUser from "./pages/admin/users/Edit";
 import Header from "./pages/components/Header";
 import Footer from "./pages/components/Footer";
+
+import { ToastContainer } from "react-toastify";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -28,6 +32,24 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <>
               <Header page={"home"} />
               <Home />
+            </>
+          }
+        />
+        <Route
+          path="/a-propos"
+          element={
+            <>
+              <Header page={"a-propos"} />
+              <APropos />
+            </>
+          }
+        />
+        <Route
+          path="/carte"
+          element={
+            <>
+              <Header page={"carte"} />
+              <Carte />
             </>
           }
         />
@@ -133,5 +155,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </Routes>
     </Router>
     <Footer />
+    <ToastContainer />
   </React.StrictMode>
 );

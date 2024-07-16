@@ -12,7 +12,7 @@ const Edit = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/me", {
+    fetch(`${import.meta.env.VITE_API_URL}/users/me`, {
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
       },
@@ -29,7 +29,7 @@ const Edit = () => {
 
   useEffect(() => {
     if (me === null) return;
-    fetch("http://localhost:3000/users/all", {
+    fetch(`${import.meta.env.VITE_API_URL}/users/all`, {
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
       },
@@ -49,7 +49,7 @@ const Edit = () => {
   useEffect(() => {
     if (me !== null) {
       const id = window.location.pathname.split("/").pop();
-      fetch(`http://localhost:3000/gallery/${id}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/gallery/${id}`, {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },
@@ -80,7 +80,7 @@ const Edit = () => {
     formData.append("date", new Date(image.date).toISOString());
     formData.append("image", image.image);
 
-    fetch(`http://localhost:3000/gallery/${image.id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/gallery/${image.id}`, {
       method: "PUT",
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
@@ -156,7 +156,7 @@ const Edit = () => {
         className="bg-blue-500 text-white p-2 rounded-md min-w-60 hover:bg-blue-700"
         onClick={() => handleEdit()}
       >
-        Ajouter
+        Modifier
       </button>
     </div>
   );

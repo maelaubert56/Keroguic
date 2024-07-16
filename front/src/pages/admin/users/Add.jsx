@@ -59,8 +59,12 @@ const Add = () => {
       <h1 className="text-2xl font-librebaskervillebold">
         Ajouter un utilisateur
       </h1>
-      <div className="md:w-1/2 w-full flex flex-col gap-1 px-10">
-        <form ref={form} onSubmit={handleAdd}>
+      <div className="md:w-1/2 w-full flex flex-col gap-1 px-10 items-center">
+        <form
+          ref={form}
+          onSubmit={handleAdd}
+          className="w-full flex flex-col gap-2 items-center"
+        >
           <label className="text-sm">Nom d{"'"}utilisateur</label>
           <input
             name="username"
@@ -91,6 +95,9 @@ const Add = () => {
               {" "}
               Choisir un privilège{" "}
             </option>
+            {me?.privilege === "owner" && (
+              <option value="owner">Propriétaire</option>
+            )}
             {me?.privilege === "owner" && (
               <option value="admin">Administrateur</option>
             )}

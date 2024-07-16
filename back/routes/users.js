@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
-const authenticateToken = require("./helpers/authMiddleware.js");
+const { authenticateToken } = require("./helpers/authMiddleware.js");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 require("dotenv").config();
@@ -26,32 +26,6 @@ const upload = multer({ storage });
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.json());
-
-router.post("/create", upload.single("file"), async (req, res) => {
-  const { username, password } = req.body;
-  const { filename } = req.file;
-
-  try {
-    // hash the password
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    // save the user to the database
-    const user = await prisma.users.create({
-      data: {
-        username,
-        password: hashedPassword,
-        picture: filename,
-      },
-    });
-
-    // generate access token for the user
-    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-
-    res.status(201).json({ accessToken });
-  } catch (error) {
-    console.log(err);
-  }
-});
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;

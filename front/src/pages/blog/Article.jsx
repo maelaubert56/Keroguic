@@ -6,18 +6,16 @@ const Article = () => {
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    setArticle({
-      id: 1,
-      title: "C'est le grand jour !",
-      content:
-        "# C'est le grand jour !\nLa fête des Vieux Métiers commence aujourd'hui à 10h00.\n\n## Programme\n- 10h00 : Ouverture\n- 11h00 : Défilé\n- 12h00 : Repas\n- 14h00 : Concours de labour\n- 16h00 : Remise des prix\n\nBonne fête à tous !\n>Éliane Aubert - Présidente\n>\n>![keroguic](https://www.keroguic.fr/img/assets/logo.png)",
-      date: new Date().toISOString().split("T")[0],
-      author: {
-        id: 1,
-        name: "Maël Aubert",
-        image: "https://randomuser.me/api/portraits/men/29.jpg",
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
       },
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setArticle(data);
+      });
   }, [id]);
 
   return (
@@ -34,11 +32,13 @@ const Article = () => {
           <div className="flex w-full flex-row gap-2 justify-start items-center">
             <img
               className="h-12 w-12 rounded-full"
-              src={article.author.image}
+              src={`${import.meta.env.VITE_API_URL}/uploads/pp/${
+                article.author.picture
+              }`}
               alt={article.author.name}
             />
             <span>
-              <p>{article.date}</p>
+              <p>{new Date(article.date).toLocaleDateString()}</p>
               <p>Écrit par {article.author.name}</p>
             </span>
           </div>

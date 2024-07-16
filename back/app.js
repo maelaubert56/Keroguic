@@ -3,6 +3,12 @@ const app = express();
 require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const authenticateToken = require("./routes/helpers/authMiddleware");
+const jszip = require("jszip");
+const fs = require("fs");
+const path = require("path");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 app.use(cors());
 
@@ -27,6 +33,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/users", require("./routes/users"));
 app.use("/posts", require("./routes/posts"));
 app.use("/gallery", require("./routes/gallery"));
+app.use("/data", require("./routes/data"));
 
 app.listen(3000, function () {
   console.log("Server is running at http://localhost:3000");

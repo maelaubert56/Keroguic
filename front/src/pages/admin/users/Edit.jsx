@@ -94,8 +94,12 @@ const Add = () => {
       {me !== null && oldUser?.id === "" && <p>Utilisateur introuvable</p>}
       {me !== null && oldUser?.id !== "" && (
         <>
-          <div className="md:w-1/2 w-full flex flex-col gap-1 px-10">
-            <form ref={form} onSubmit={handleEditUser}>
+          <div className="md:w-1/2 w-full flex flex-col gap-1 px-10 items-center">
+            <form
+              ref={form}
+              onSubmit={handleEditUser}
+              className="w-full flex flex-col gap-1 items-center"
+            >
               <label className="text-sm">
                 Nom d{"'"}utilisateur (non modifiable)
               </label>
@@ -138,7 +142,7 @@ const Add = () => {
                 <option value="" disabled>
                   Choisir un privilège
                 </option>
-                {me?.privilege === "owner" && me?.id === oldUser?.id && (
+                {me?.privilege === "owner" && (
                   <option value="owner">Propriétaire</option>
                 )}
                 {((me?.privilege === "admin" && me?.id === oldUser?.id) ||
