@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 const Edit = () => {
   const [me, setMe] = useState(null);
   const [authors, setAuthors] = useState([]);
-  const [image, setImage] = useState({
+  const [media, setMedia] = useState({
     id: "",
     title: "",
-    image: "",
+    media: "",
     date: "",
     author: "",
   });
@@ -61,10 +61,10 @@ const Edit = () => {
           return res.json();
         })
         .then((data) => {
-          setImage({
+          setMedia({
             id: data.id,
             title: data.title,
-            image: data.image,
+            media: data.media,
             date: new Date(data.date).toISOString().split("T")[0],
             author: data.authorId,
           });
@@ -73,14 +73,14 @@ const Edit = () => {
   }, [me]);
 
   const handleEdit = () => {
-    console.log(image);
+    console.log(media);
     const formData = new FormData();
-    formData.append("title", image.title);
-    formData.append("author", image.author);
-    formData.append("date", new Date(image.date).toISOString());
-    formData.append("image", image.image);
+    formData.append("title", media.title);
+    formData.append("author", media.author);
+    formData.append("date", new Date(media.date).toISOString());
+    formData.append("media", media.media);
 
-    fetch(`${import.meta.env.VITE_API_URL}/gallery/${image.id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/gallery/${media.id}`, {
       method: "PUT",
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
@@ -104,16 +104,16 @@ const Edit = () => {
           className="border-2 border-gray-300 w-full pl-2 h-10"
           type="text"
           placeholder="Title"
-          value={image.title}
-          onChange={(e) => setImage({ ...image, title: e.target.value })}
+          value={media.title}
+          onChange={(e) => setMedia({ ...media, title: e.target.value })}
         />
         <label htmlFor="author">Auteur</label>
         <select
           id="author"
           name="author"
           className="border-2 border-gray-300 w-full pl-2"
-          value={image.author}
-          onChange={(e) => setImage({ ...image, author: e.target.value })}
+          value={media.author}
+          onChange={(e) => setMedia({ ...media, author: e.target.value })}
         >
           {authors.map((author) => (
             <option key={author.id} value={author.id} defaultValue={me.id}>
@@ -128,27 +128,38 @@ const Edit = () => {
           id="date"
           className="border-2 border-gray-300 w-full pl-2 h-10"
           type="date"
-          value={image.date}
-          onChange={(e) => setImage({ ...image, date: e.target.value })}
+          value={media.date}
+          onChange={(e) => setMedia({ ...media, date: e.target.value })}
         />
 
-        <label htmlFor="image">Image</label>
+        <label htmlFor="media">Media</label>
         <input
-          id="image"
+          id="media"
           className="border-2 border-gray-300 w-full pl-2 py-1 text-sm"
           type="file"
-          accept="image/*"
-          onChange={(e) => setImage({ ...image, image: e.target.files[0] })}
+          accept="media/*,video/*"
+          onChange={(e) => setMedia({ ...media, media: e.target.files[0] })}
         />
         <div className="flex flex-col gap-1 items-center rounded-lg border-2 border-gray-300 p-2">
-          <p>Ancienne image :</p>
-          <img
-            className="w-1/2"
-            src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${
-              image.image
-            }`}
-            alt={image?.title}
-          />
+          <p>Ancienne media :</p>
+          {media.media.includes("mp4") ? (
+            <video
+              className="w-1/2"
+              src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${
+                media.media
+              }`}
+              alt={media?.title}
+              controls
+            />
+          ) : (
+            <img
+              className="w-1/2"
+              src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${
+                media.media
+              }`}
+              alt={media?.title}
+            />
+          )}
         </div>
       </div>
 

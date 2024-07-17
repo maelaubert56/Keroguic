@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 const Add = () => {
   const [me, setMe] = useState(null);
   const [authors, setAuthors] = useState([]);
-  const [image, setImage] = useState({
+  const [media, setMedia] = useState({
     title: "",
     published: true,
-    image: "",
+    media: "",
     date: "",
     author: "",
   });
@@ -48,10 +48,10 @@ const Add = () => {
 
   useEffect(() => {
     if (me !== null) {
-      setImage({
+      setMedia({
         title: "",
         published: true,
-        image: "",
+        media: "",
         date: new Date().toISOString().split("T")[0],
         author: me.id,
       });
@@ -60,16 +60,16 @@ const Add = () => {
 
   const handleAdd = () => {
     const sendData = {
-      title: image.title,
-      image: image.image,
-      date: new Date(image.date).toISOString(),
-      author: image.author,
-      published: image.published,
+      title: media.title,
+      media: media.media,
+      date: new Date(media.date).toISOString(),
+      author: media.author,
+      published: media.published,
     };
 
     const formData = new FormData();
     formData.append("title", sendData.title);
-    formData.append("image", sendData.image);
+    formData.append("media", sendData.media);
     formData.append("date", sendData.date);
     formData.append("author", sendData.author);
     formData.append("published", sendData.published);
@@ -95,7 +95,7 @@ const Add = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8 py-16">
       <h1 className="text-2xl font-bold font-librebaskervilleregular">
-        Ajouter une image
+        Ajouter une media
       </h1>
       <div className="md:w-1/2 w-full flex flex-col gap-3 px-10">
         <label className="text-sm">
@@ -104,8 +104,8 @@ const Add = () => {
             className="border-2 border-gray-300 w-full pl-2 h-10"
             type="text"
             placeholder="Title"
-            value={image.title}
-            onChange={(e) => setImage({ ...image, title: e.target.value })}
+            value={media.title}
+            onChange={(e) => setMedia({ ...media, title: e.target.value })}
           />
         </label>
 
@@ -114,8 +114,8 @@ const Add = () => {
           <select
             name="author"
             className="border-2 border-gray-300 w-full pl-2 h-10"
-            value={image.author}
-            onChange={(e) => setImage({ ...image, author: e.target.value })}
+            value={media.author}
+            onChange={(e) => setMedia({ ...media, author: e.target.value })}
           >
             {authors.map((author) => (
               <option key={author.id} value={author.id} defaultValue={me.id}>
@@ -131,9 +131,9 @@ const Add = () => {
             type="checkbox"
             className="h-5 w-5"
             defaultChecked={true}
-            value={image.published}
+            value={media.published}
             onChange={(e) =>
-              setImage({ ...image, published: e.target.checked })
+              setMedia({ ...media, published: e.target.checked })
             }
           />
           Publié
@@ -143,17 +143,18 @@ const Add = () => {
           <input
             className="border-2 border-gray-300 w-full pl-2 h-10"
             type="date"
-            value={image.date}
-            onChange={(e) => setImage({ ...image, date: e.target.value })}
+            value={media.date}
+            onChange={(e) => setMedia({ ...media, date: e.target.value })}
           />
         </label>
         <label className="text-sm">
-          Image
+          Media
           <input
             className="border-2 border-gray-300 w-full pl-2 py-1 text-sm"
             type="file"
-            accept="image/*"
-            onChange={(e) => setImage({ ...image, image: e.target.files[0] })}
+            // accept media and video
+            accept="media/*,video/*"
+            onChange={(e) => setMedia({ ...media, media: e.target.files[0] })}
           />
         </label>
       </div>

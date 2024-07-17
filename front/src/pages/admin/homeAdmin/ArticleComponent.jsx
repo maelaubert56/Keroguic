@@ -45,7 +45,8 @@ const ArticleComponent = ({ me }) => {
     })
       .then((res) => {
         if (res.status === 200) {
-          window.location.reload();
+          fetchArticles();
+          setOpenDeleteArticle(null);
         } else {
           alert("Une erreur est survenue lors de la suppression de l'article");
         }

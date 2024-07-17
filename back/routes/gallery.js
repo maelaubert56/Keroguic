@@ -36,6 +36,13 @@ router.get("/", authenticateToken, async function (req, res) {
       date: "desc",
     },
   });
+
+  // modify the key image to media
+  images.forEach((image) => {
+    image.media = image.image;
+    delete image.image;
+  });
+
   res.json(images);
 });
 
@@ -53,9 +60,9 @@ router.get("/page/:page", getUser, async function (req, res) {
       return;
     }
 
-    var images = [];
+    var medias = [];
     if (req.user && req.query.all === "true") {
-      images = await prisma.gallery.findMany({
+      medias = await prisma.gallery.findMany({
         include: {
           author: true,
         },
@@ -66,7 +73,7 @@ router.get("/page/:page", getUser, async function (req, res) {
         take: imagePerPage,
       });
     } else {
-      images = await prisma.gallery.findMany({
+      medias = await prisma.gallery.findMany({
         include: {
           author: true,
         },
@@ -81,10 +88,16 @@ router.get("/page/:page", getUser, async function (req, res) {
       });
     }
 
-    const totalImages = await prisma.gallery.count();
-    const totalPages = Math.ceil(totalImages / imagePerPage);
+    const totalMedias = await prisma.gallery.count();
+    const totalPages = Math.ceil(totalMedias / imagePerPage);
 
-    res.json({ images, totalPages, totalImages });
+    // modify the key image to media
+    medias.forEach((media) => {
+      media.media = media.image;
+      delete media.image;
+    });
+
+    res.json({ medias, totalPages, totalMedias });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -105,6 +118,10 @@ router.get("/:id", authenticateToken, async function (req, res) {
       return;
     }
 
+    // modify the key image to media
+    image.media = image.image;
+    delete image.image;
+
     res.json(image);
   } catch (error) {
     console.log(error);
@@ -115,7 +132,7 @@ router.get("/:id", authenticateToken, async function (req, res) {
 router.post(
   "/",
   authenticateToken,
-  upload.single("image"),
+  upload.single("media"),
   async function (req, res) {
     var { title, date, author, published } = req.body;
     const image = req.file.filename;
@@ -172,7 +189,7 @@ router.post(
 router.put(
   "/:id",
   authenticateToken,
-  upload.single("image"),
+  upload.single("media"),
   async function (req, res) {
     try {
       const id = req.params.id;
@@ -251,6 +268,10 @@ router.put(
             date,
           },
         });
+
+        // modify the key image to media
+        updatedImage.media = updatedImage.image;
+        delete updatedImage.image;
         res.json(updatedImage);
       } else {
         const updatedImage = await prisma.gallery.update({
@@ -264,6 +285,9 @@ router.put(
             date,
           },
         });
+        // modify the key image to media
+        updatedImage.media = updatedImage.image;
+        delete updatedImage.image;
         res.json(updatedImage);
       }
     } catch (error) {

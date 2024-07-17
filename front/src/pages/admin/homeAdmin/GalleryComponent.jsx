@@ -8,24 +8,24 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ArticleComponent = ({ me }) => {
-  const [openDeleteImage, setOpenDeleteImage] = useState(null);
-  const [openPreviewImage, setOpenPreviewImage] = useState(null);
+  const [openDeleteMedia, setOpenDeleteMedia] = useState(null);
+  const [openPreviewMedia, setOpenPreviewMedia] = useState(null);
 
   const [galerie, setGalerie] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [totalImages, setTotalImages] = useState(0);
+  const [totalMedias, setTotalMedias] = useState(0);
 
-  const [onlyMyImages, setOnlyMyImages] = useState(false);
+  const [onlyMyMedias, setOnlyMyMedias] = useState(false);
 
-  // get images
+  // get medias
   useEffect(() => {
     if (me) {
-      fetchImages();
+      fetchMedias();
     }
   }, [me, page]);
 
-  const fetchImages = () => {
+  const fetchMedias = () => {
     // if page is negative or nan, return an error
     if (page <= 0 || isNaN(page)) {
       return;
@@ -46,28 +46,29 @@ const ArticleComponent = ({ me }) => {
         }
       })
       .then((data) => {
-        setGalerie(data.images);
+        setGalerie(data.medias);
         setTotalPages(data.totalPages);
-        setTotalImages(data.totalImages);
+        setTotalMedias(data.totalMedias);
       })
       .catch((err) => console.log(err));
   };
 
-  const onDeleteImage = (id) => {
+  const onDeleteMedia = (id) => {
     fetch(`${import.meta.env.VITE_API_URL}/gallery/${id}`, {
       method: "DELETE",
       headers: { Authorization: localStorage.getItem("token") },
     })
       .then((res) => {
         if (res.status === 200) {
-          window.location.reload();
+          fetchMedias();
+          setOpenDeleteMedia(null);
         } else {
-          alert("Une erreur est survenue lors de la suppression de l'image");
+          alert("Une erreur est survenue lors de la suppression de l'media");
         }
       })
       .catch((error) => {
         alert(
-          "Une erreur est survenue lors de la suppression de l'image: " +
+          "Une erreur est survenue lors de la suppression de l'media: " +
             error.message
         );
       });
@@ -80,28 +81,28 @@ const ArticleComponent = ({ me }) => {
         className="bg-blue-500 text-white p-2 text-sm rounded-lg hover:bg-blue-700"
         onClick={() => (window.location.href = "/admin/gallery/add")}
       >
-        Ajouter une image
+        Ajouter une media
       </button>
 
       <div className="flex flex-row gap-2">
         <input
-          id="onlyMyImages"
+          id="onlyMyMedias"
           type="checkbox"
           onClick={() => {
-            setOnlyMyImages(!onlyMyImages);
+            setOnlyMyMedias(!onlyMyMedias);
           }}
         />
-        <label htmlFor="onlyMyImages">Afficher uniquement mes images</label>
+        <label htmlFor="onlyMyMedias">Afficher uniquement mes medias</label>
       </div>
       {galerie?.length === 0 ? (
-        <p>Aucune image disponible</p>
+        <p>Aucune media disponible</p>
       ) : (
         <>
-          <p className="text-sm">{totalImages} images</p>
+          <p className="text-sm">{totalMedias} medias</p>
           <table className="w-full">
             <thead className="bg-gray-300">
               <tr className="text-left">
-                <th className="p-2">Image</th>
+                <th className="p-2">Media</th>
                 <th className="p-2">Titre</th>
                 <th className="p-2">Date</th>
                 <th className="p-2">Auteur</th>
@@ -111,41 +112,52 @@ const ArticleComponent = ({ me }) => {
             </thead>
             <tbody className="bg-gray-100">
               {galerie?.map(
-                (image) =>
-                  (!onlyMyImages || image.author.id === me.id) && (
-                    <tr key={image.id} className="text-left">
+                (media) =>
+                  (!onlyMyMedias || media.author.id === me.id) && (
+                    <tr key={media.id} className="text-left">
                       <td
                         className="p-2"
-                        onClick={() => setOpenPreviewImage(image.id)}
+                        onClick={() => setOpenPreviewMedia(media.id)}
                       >
-                        <img
-                          className="w-10 rounded-md"
-                          src={`${
-                            import.meta.env.VITE_API_URL
-                          }/uploads/gallery/${image.image}`}
-                          alt={image.title}
-                        />
+                        {media.media.includes(".mp4") ? (
+                          <video
+                            className="w-10 rounded-md"
+                            src={`${
+                              import.meta.env.VITE_API_URL
+                            }/uploads/gallery/${media.media}`}
+                            alt={media.title}
+                            controls
+                          />
+                        ) : (
+                          <img
+                            className="w-10 rounded-md"
+                            src={`${
+                              import.meta.env.VITE_API_URL
+                            }/uploads/gallery/${media.media}`}
+                            alt={media.title}
+                          />
+                        )}
                       </td>
-                      <td className="p-2">{image.title}</td>
+                      <td className="p-2">{media.title}</td>
                       <td className="p-2">
-                        {new Date(image.date).toLocaleDateString()}
+                        {new Date(media.date).toLocaleDateString()}
                       </td>
-                      <td className="p-2">{image.author.name}</td>
+                      <td className="p-2">{media.author.name}</td>
                       <td className="p-2">
                         <input
                           type="checkbox"
-                          checked={image.published}
+                          checked={media.published}
                           onChange={() => {
                             setGalerie(
                               galerie.map((a) =>
-                                a.id === image.id
+                                a.id === media.id
                                   ? { ...a, published: !a.published }
                                   : a
                               )
                             );
                             fetch(
                               `${import.meta.env.VITE_API_URL}/gallery/${
-                                image.id
+                                media.id
                               }`,
                               {
                                 method: "PUT",
@@ -154,25 +166,25 @@ const ArticleComponent = ({ me }) => {
                                   Authorization: localStorage.getItem("token"),
                                 },
                                 body: JSON.stringify({
-                                  title: image.title,
-                                  author: image.author.id,
-                                  date: image.date,
-                                  published: !image.published,
+                                  title: media.title,
+                                  author: media.author.id,
+                                  date: media.date,
+                                  published: !media.published,
                                 }),
                               }
                             )
                               .then((res) => {
                                 if (res.status === 200) {
-                                  fetchImages();
+                                  fetchMedias();
                                 } else {
                                   alert(
-                                    "Une erreur est survenue lors de la modification de l'image"
+                                    "Une erreur est survenue lors de la modification de l'media"
                                   );
                                 }
                               })
                               .catch((error) => {
                                 alert(
-                                  "Une erreur est survenue lors de la modification de l'image: " +
+                                  "Une erreur est survenue lors de la modification de l'media: " +
                                     error.message
                                 );
                               });
@@ -183,11 +195,11 @@ const ArticleComponent = ({ me }) => {
                         <button
                           className={`bg-blue-500 text-white p-2 text-xs rounded-lg hover:bg-blue-700`}
                           onClick={() => {
-                            // add the link to the image in the clipboard
+                            // add the link to the media in the clipboard
                             navigator.clipboard.writeText(
                               `${
                                 import.meta.env.VITE_API_URL
-                              }/uploads/gallery/${image.image}`
+                              }/uploads/gallery/${media.media}`
                             );
                             toast("Lien copié dans le presse-papier", {
                               type: "success",
@@ -199,14 +211,14 @@ const ArticleComponent = ({ me }) => {
 
                         <button
                           className={`bg-blue-500 text-white p-2 text-xs rounded-lg hover:bg-blue-700 ${
-                            image.author.id !== me.id &&
+                            media.author.id !== me.id &&
                             me.privilege !== "owner" &&
                             me.privilege !== "admin" &&
                             me.privilege !== "editor" &&
                             "hidden"
                           }`}
                           onClick={() =>
-                            (window.location.href = `/admin/gallery/edit/${image.id}`)
+                            (window.location.href = `/admin/gallery/edit/${media.id}`)
                           }
                         >
                           Modifier
@@ -214,41 +226,52 @@ const ArticleComponent = ({ me }) => {
 
                         <button
                           className={`bg-red-500 text-white p-2 text-xs rounded-lg hover:bg-red-700 ${
-                            image.author.id !== me.id &&
+                            media.author.id !== me.id &&
                             me.privilege !== "owner" &&
                             me.privilege !== "admin" &&
                             me.privilege !== "editor" &&
                             "hidden"
                           }`}
-                          onClick={() => setOpenDeleteImage(image.id)}
+                          onClick={() => setOpenDeleteMedia(media.id)}
                         >
                           Supprimer
                         </button>
                       </td>
-                      {openPreviewImage === image.id && (
+                      {openPreviewMedia === media.id && (
                         <div
                           className="absolute top-0 left-0 w-screen h-screen flex flex-col justify-center items-center backdrop-filter backdrop-blur-sm"
-                          onClick={() => setOpenPreviewImage(null)}
+                          onClick={() => setOpenPreviewMedia(null)}
                         >
                           <div
                             className="bg-white p-5 rounded-lg flex flex-col justify-center items-center gap-5"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            <h2>{image.title}</h2>
-                            <img
-                              className="w-64 rounded-md"
-                              src={`${
-                                import.meta.env.VITE_API_URL
-                              }/uploads/gallery/${image.image}`}
-                              alt={image.title}
-                            />
+                            <h2>{media.title}</h2>
+                            {media.media.includes(".mp4") ? (
+                              <video
+                                className="w-10 rounded-md"
+                                src={`${
+                                  import.meta.env.VITE_API_URL
+                                }/uploads/gallery/${media.media}`}
+                                alt={media.title}
+                                controls
+                              />
+                            ) : (
+                              <img
+                                className="w-10 rounded-md"
+                                src={`${
+                                  import.meta.env.VITE_API_URL
+                                }/uploads/gallery/${media.media}`}
+                                alt={media.title}
+                              />
+                            )}
                           </div>
                         </div>
                       )}
-                      {openDeleteImage === image.id && (
+                      {openDeleteMedia === media.id && (
                         <div
                           className="absolute top-0 left-0 w-screen h-screen flex flex-col justify-center items-center backdrop-filter backdrop-blur-sm"
-                          onClick={() => setOpenDeleteImage(null)}
+                          onClick={() => setOpenDeleteMedia(null)}
                         >
                           <div
                             className="bg-white p-5 rounded-lg flex flex-col justify-center items-center gap-3"
@@ -259,31 +282,31 @@ const ArticleComponent = ({ me }) => {
                               className="text-sm font-semibold
                         "
                             >
-                              {image.title}
+                              {media.title}
                             </p>
                             <img
                               className="w-64 rounded-md"
                               src={`${
                                 import.meta.env.VITE_API_URL
-                              }/uploads/gallery/${image.image}`}
-                              alt={image.title}
+                              }/uploads/gallery/${media.media}`}
+                              alt={media.title}
                             />
                             <p className="text-sm font-semibold">
-                              {image.date}
+                              {media.date}
                             </p>
                             <p className="text-sm font-semibold">
-                              {image.author.name}
+                              {media.author.name}
                             </p>
                             <div className="flex flex-row gap-5 w-full justify-center items-center">
                               <button
                                 className="bg-red-500 text-white p-2 text-xs rounded-lg w-1/3 hover:bg-red-700"
-                                onClick={() => onDeleteImage(image.id)}
+                                onClick={() => onDeleteMedia(media.id)}
                               >
                                 Oui
                               </button>
                               <button
                                 className="bg-blue-500 text-white p-2 text-xs rounded-lg w-1/3 hover:bg-blue-700"
-                                onClick={() => setOpenDeleteImage(null)}
+                                onClick={() => setOpenDeleteMedia(null)}
                               >
                                 Non
                               </button>
