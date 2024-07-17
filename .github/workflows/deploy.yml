@@ -24,7 +24,6 @@ jobs:
             echo " ------ Connected to server ------"
             cd /var/www/Keroguic
             echo "------ Pulling changes ------"
-            git checkout prod
             git pull origin prod --ff-only
             cd front
             echo "------ Installing front dependencies ------"
