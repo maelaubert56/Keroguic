@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <main className="font-librebaskervilleregular">
-      <div className="bg-[url('assets/img/banner.jpg')] h-[40vh] bg-cover	bg-center bg-no-repeat flex flex-col justify-start items-center">
+      <div className="bg-[url('/assets/img/banner.jpg')] h-[40vh] bg-cover	bg-center bg-no-repeat flex flex-col justify-start items-center">
         <div className="w-[90%] p-5 m-4 bg-black/60 text-white flex flex-col text-center justify-center items-center">
           <h1 className="text-3xl">Fête des vieux métiers</h1>
           <h2 className="text-2xl">-</h2>
@@ -86,7 +86,7 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="bg-[url('assets/img/champs.jpg')] bg-cover bg-center bg-no-repeat w-full flex justify-center items-center relative">
+      <div className="bg-[url('/assets/img/champs.jpg')] bg-cover bg-center bg-no-repeat w-full flex justify-center items-center relative">
         <div className="w-full m-7 p-10 rounded-2xl flex flex-col justify-between items-center lg:gap-10 gap-4 z-1 -mt-5 bg-white shadow-lg">
           <h3 className="text-3xl font-librebaskervillebold">Programme</h3>
           <div className="w-full lg:flex-row flex-col flex justify-evenly lg:items-start items-center gap-5">
