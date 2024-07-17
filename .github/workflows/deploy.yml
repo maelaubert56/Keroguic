@@ -21,17 +21,18 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            echo "Connected to server"
+            echo " ------ Connected to server ------"
             cd /var/www/Keroguic
-            echo "Pulling changes"
+            echo "------ Pulling changes ------"
             git pull origin prod
             cd front
-            echo "Installing front dependencies"
+            echo "------ Installing front dependencies ------"
             npm install
-            echo "Building front"
+            echo "------ Building front ------"
             npm run build
             cd ../back
-            echo "Installing back dependencies"
+            echo "------ Installing back dependencies ------"
             npm install
-            echo "Restarting pm2"
+            echo "------ Restarting pm2 ------"
             pm2 restart all
+            echo " ------ Deployed ------"
