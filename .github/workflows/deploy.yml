@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ github.CONFIRMATION }}
+          secret: ${{ github.TOKEN  }}
           approvers: maelaubert56
           minimum-approvals: 1
           issue-title: "Deployment approval"
