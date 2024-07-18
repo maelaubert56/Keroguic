@@ -127,9 +127,7 @@ const Home = () => {
               </div>
               <span className="text-center leading-tight">
                 <p className="text-sm">CONCERT</p>
-                <h3 className="text-xl font-librebaskervillebold">
-                  Dan Ar Braz
-                </h3>
+                <h3 className="text-xl font-librebaskervillebold">Gwennyn</h3>
               </span>
             </div>
             <img
