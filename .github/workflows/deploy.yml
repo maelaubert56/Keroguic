@@ -12,14 +12,14 @@ jobs:
     steps:
       - uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ github.prod }}
+          secret: ${{ github.CONFIRMATION }}
           approvers: maelaubert56
           minimum-approvals: 1
           issue-title: "Deployment approval"
           issue-body: "Please approve or deny this deployment (yes/no)"
           exclude-workflow-initiator-as-approver: false
-          additional-approved-words: "approve, ok, yes, y"
-          additional-denied-words: "deny, no, n"
+          additional-approved-words: "ok,y"
+          additional-denied-words: "n"
 
       - name: Checkout repository
         uses: actions/checkout@v2
