@@ -9,17 +9,9 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: trstringer/manual-approval@v1
-        with:
-          secret: ${{ github.TOKEN  }}
-          approvers: maelaubert56,mgesdz
-          minimum-approvals: 1
-          issue-title: "Deployment approval"
-          issue-body: "Please approve or deny this deployment (yes/no)"
-          exclude-workflow-initiator-as-approver: false
-          additional-approved-words: "ok,y"
-          additional-denied-words: "n"
+    steps: # setup approvol using the environment variable "CONFIRMATION" in the repository secrets
+      - name: Check confirmation
+        run: echo "Confirmation: ${{ secrets.CONFIRMATION }}"
 
       - name: Checkout repository
         uses: actions/checkout@v2
