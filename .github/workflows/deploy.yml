@@ -13,7 +13,7 @@ jobs:
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN  }}
-          approvers: maelaubert56,
+          approvers: maelaubert56,mgesdz
           minimum-approvals: 1
           issue-title: "Deployment approval"
           issue-body: "Please approve or deny this deployment (yes/no)"
