@@ -13,7 +13,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Request confirmation for deployment
+        id: confirmation
+        run: |
+          echo "⚠️ Are you sure you want to deploy to production?"
+          echo "❗️ Please ensure you have backed up your database."
+          echo "❓ Type 'deploy' to proceed with deployment."
+          read confirmation
+          echo "::set-output name=confirmation::$confirmation"
+
       - name: Connect to server
+        if: steps.confirmation.outputs.confirmation == 'deploy'
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -31,8 +41,20 @@ jobs:
             echo "------ Building front ------"
             npm run build
             cd ../back
+            echo "------ Save the data ------" # to do this execute the command in backup.js
+            node backup.js
             echo "------ Installing back dependencies ------"
             npm install
+            echo "------ Restart the postgres container ------"
+            docker-compose up -d
+            echo "------ Prisma generate ------"
+            npx prisma generate
+            echo "------ Seeding the database ------"
+            npx prisma db seed
             echo "------ Restarting pm2 ------"
             pm2 restart all
             echo " ------ Deployed ------"
+
+      - name: Abort deployment due to lack of confirmation
+        if: steps.confirmation.outputs.confirmation != 'deploy'
+        run: echo "Deployment aborted due to lack of confirmation."
