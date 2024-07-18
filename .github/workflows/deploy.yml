@@ -10,15 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.prod }}
+          approvers: maelaubert56
+          minimum-approvals: 1
+          issue-title: "Deployment approval"
+          issue-body: "Please approve or deny this deployment (yes/no)"
+          exclude-workflow-initiator-as-approver: false
+          additional-approved-words: "approve, ok, yes, y"
+          additional-denied-words: "deny, no, n"
+
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Request confirmation for deployment
-        id: confirmation
-        uses: technote-space/github-action-confirmation@v2
-        with:
-          confirm_message: "⚠️ Are you sure you want to deploy to production?"
-          confirm_keyword: "deploy"
 
       - name: Connect to server
         uses: appleboy/ssh-action@master
