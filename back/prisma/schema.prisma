@@ -33,7 +33,7 @@ model Gallery {
   id        String   @id @default(uuid())
   title     String
   published Boolean  @default(false)
-  image     String
+  media     String
   date      DateTime
   author    Users    @relation(fields: [authorId], references: [id])
   authorId  String
