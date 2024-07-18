@@ -41,6 +41,8 @@ jobs:
             docker-compose up -d
             echo "------ Prisma generate ------"
             npx prisma generate
+            echo "------ Prisma db push ------"
+            npx prisma db push --force-reset --accept-data-loss
             echo "------ Seeding the database ------"
             npx prisma db seed
             echo "------ Restarting pm2 ------"
