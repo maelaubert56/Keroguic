@@ -35,7 +35,7 @@ app.use("/posts", require("./routes/posts"));
 app.use("/gallery", require("./routes/gallery"));
 app.use("/data", require("./routes/data"));
 
-app.listen(3000, function () {
+app.listen(process.env.PORT, () => {
   console.log("Server is running at http://localhost:3000");
 });
 
