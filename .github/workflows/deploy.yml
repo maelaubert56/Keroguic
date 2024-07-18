@@ -9,7 +9,7 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
 
-    steps: # setup approvol using the environment variable "CONFIRMATION" in the repository secrets
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -21,7 +21,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            echo " ------ ${{ secrets.CONFIRMATION }} ------"
             echo " ------ Connected to server ------"
             cd /var/www/Keroguic
             echo "------ Pulling changes ------"
@@ -31,6 +30,8 @@ jobs:
             npm install
             echo "------ Building front ------"
             npm run build
+            echo "------ Restarting nginx ------"
+            sudo systemctl restart nginx
             cd ../back
             echo "------ Save the data ------" # to do this execute the command in backup.js
             node backup.js
