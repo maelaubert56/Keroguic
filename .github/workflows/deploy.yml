@@ -11,7 +11,9 @@ jobs:
 
     steps: # setup approvol using the environment variable "CONFIRMATION" in the repository secrets
       - name: Check confirmation
-        run: echo "Confirmation: ${{ secrets.CONFIRMATION }}"
+        run: echo "Confirmation: $CONFIRMATION"
+        env:
+          CONFIRMATION: ${{ secrets.CONFIRMATION }}
 
       - name: Checkout repository
         uses: actions/checkout@v2
