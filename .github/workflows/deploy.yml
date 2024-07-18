@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: # setup approvol using the environment variable "CONFIRMATION" in the repository secrets
-      - name: Check confirmation
-        run: echo "Confirmation: $CONFIRMATION"
-        env:
-          CONFIRMATION: ${{ secrets.CONFIRMATION }}
-
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -26,6 +21,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            echo " ------ ${{ secrets.CONFIRMATION }} ------"
             echo " ------ Connected to server ------"
             cd /var/www/Keroguic
             echo "------ Pulling changes ------"
