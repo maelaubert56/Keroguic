@@ -15,15 +15,12 @@ jobs:
 
       - name: Request confirmation for deployment
         id: confirmation
-        run: |
-          echo "⚠️ Are you sure you want to deploy to production?"
-          echo "❗️ Please ensure you have backed up your database."
-          echo "❓ Type 'deploy' to proceed with deployment."
-          read confirmation
-          echo "::set-output name=confirmation::$confirmation"
+        uses: technote-space/github-action-confirmation@v2
+        with:
+          confirm_message: "⚠️ Are you sure you want to deploy to production?"
+          confirm_keyword: "deploy"
 
       - name: Connect to server
-        if: steps.confirmation.outputs.confirmation == 'deploy'
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -54,7 +51,3 @@ jobs:
             echo "------ Restarting pm2 ------"
             pm2 restart all
             echo " ------ Deployed ------"
-
-      - name: Abort deployment due to lack of confirmation
-        if: steps.confirmation.outputs.confirmation != 'deploy'
-        run: echo "Deployment aborted due to lack of confirmation."
