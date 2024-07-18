@@ -3,7 +3,7 @@ const APropos = () => {
     <div className="flex flex-col items-center justify-center">
       <div
         className="w-full bg-cover bg-center bg-no-repeat flex flex-col items-center justify-start"
-        style={{ backgroundImage: 'url("assets/img/banner.jpg")' }}
+        style={{ backgroundImage: 'url("/assets/img/banner.jpg")' }}
       >
         <div className="w-[90%] p-7 m-5 bg-black/60 text-white text-center flex flex-col items-center justify-center">
           <h1
@@ -88,7 +88,7 @@ const APropos = () => {
 
       <div
         className="-z-10 bg-cover bg-center bg-no-repeat w-full flex flex-col items-center justify-center py-16 px-7"
-        style={{ backgroundImage: 'url("assets/img/champs.jpg")' }}
+        style={{ backgroundImage: 'url("/assets/img/champs.jpg")' }}
       >
         <div className=" bg-white rounded-xl py-7 w-full px-2 text-center text-black font-librebaskervilleregular flex flex-col gap-3">
           <h3 className="font-librebaskervillebold text-xl">

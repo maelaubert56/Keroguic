@@ -1,6 +1,9 @@
 const { PrismaClient, Prisma } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+const fs = require("fs");
+const path = require("path");
+
 let errorCount = 0;
 
 const handleError = (e, obj = undefined) => {
@@ -27,6 +30,27 @@ const handleError = (e, obj = undefined) => {
 
   console.error(e.message);
   throw e;
+};
+
+const deleteAll = async () => {
+  // delete all the posts
+  await prisma.posts.deleteMany({});
+  // delete all the gallery
+  await prisma.gallery.deleteMany({});
+  // delete all the users
+  await prisma.users.deleteMany({});
+  // delete all the media in the /uploads/gallery folder
+
+  const gallery = "./uploads/gallery";
+  const pp = "./uploads/pp";
+  const filesGallery = fs.readdirSync(gallery);
+  const filesPp = fs.readdirSync(pp);
+  filesGallery.forEach((file) => {
+    fs.unlinkSync(path.join(gallery, file));
+  });
+  filesPp.forEach((file) => {
+    fs.unlinkSync(path.join(pp, file));
+  });
 };
 
 const usersRequest = () => {
@@ -58,6 +82,7 @@ const usersRequest = () => {
 };
 
 const main = async () => {
+  await deleteAll();
   await usersRequest();
 };
 

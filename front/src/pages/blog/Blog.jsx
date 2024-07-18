@@ -33,7 +33,7 @@ const Blog = () => {
   return (
     <div
       className="flex flex-col items-center justify-center w-full p-4 py-16 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: 'url("assets/img/champs.jpg")' }}
+      style={{ backgroundImage: 'url("/assets/img/champs.jpg")' }}
     >
       <h1 className="text-2xl text-white font-librebaskervillebold">Blog</h1>
       <span className="text-sm text-white">{totalPosts} articles</span>

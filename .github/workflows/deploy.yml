@@ -1,0 +1,48 @@
+name: Deploy Keroguic
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Connect to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            echo " ------ Connected to server ------"
+            cd /var/www/Keroguic
+            echo "------ Pulling changes ------"
+            git pull origin prod --ff-only
+            cd front
+            echo "------ Installing front dependencies ------"
+            npm install
+            echo "------ Building front ------"
+            npm run build
+            echo "------ Restarting nginx ------"
+            sudo systemctl restart nginx
+            cd ../back
+            echo "------ Save the data ------" # to do this execute the command in backup.js
+            node backup.js
+            echo "------ Installing back dependencies ------"
+            npm install
+            echo "------ Restart the postgres container ------"
+            docker-compose up -d
+            echo "------ Prisma generate ------"
+            npx prisma generate
+            echo "------ Seeding the database ------"
+            npx prisma db seed
+            echo "------ Restarting pm2 ------"
+            pm2 restart all
+            echo " ------ Deployed ------"
