@@ -173,21 +173,25 @@ router.post(
         await prisma.users.deleteMany();
 
         console.log("WRITING USERS");
-        await dataJSON.users.forEach(async (user) => {
-          await prisma.users.create({
-            data: {
-              id: user.id,
-              username: user.username,
-              name: user.name,
-              password: user.password,
-              picture: user.picture,
-              privilege: user.privilege,
-            },
-          });
-        });
+        for (const user of dataJSON.users) {
+          try {
+            const createdUser = await prisma.users.create({
+              data: {
+                id: user.id,
+                username: user.username,
+                name: user.name,
+                password: user.password,
+                picture: user.picture,
+                privilege: user.privilege,
+              },
+            });
+          } catch (error) {
+            console.log("ERROR", error);
+          }
+        }
 
         console.log("WRITING POSTS");
-        await dataJSON.posts.forEach(async (post) => {
+        for (const post of dataJSON.posts) {
           await prisma.posts.create({
             data: {
               id: post.id,
@@ -198,21 +202,21 @@ router.post(
               authorId: post.authorId,
             },
           });
-        });
+        }
 
         console.log("WRITING GALLERY");
-        await dataJSON.gallery.forEach(async (image) => {
+        for (const media of dataJSON.gallery) {
           await prisma.gallery.create({
             data: {
-              id: image.id,
-              title: image.title,
-              published: image.published,
-              image: image.image,
-              date: image.date,
-              authorId: image.authorId,
+              id: media.id,
+              title: media.title,
+              published: media.published,
+              media: media.media,
+              date: media.date,
+              authorId: media.authorId,
             },
           });
-        });
+        }
 
         fs.unlinkSync(zipPath);
 

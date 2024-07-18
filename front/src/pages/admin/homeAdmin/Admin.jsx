@@ -83,7 +83,7 @@ const Admin = () => {
           {/* articles */}
           <ArticleComponent me={me} />
 
-          {/* images */}
+          {/* gallery */}
           <GalleryComponent me={me} />
         </>
       ) : (

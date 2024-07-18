@@ -106,15 +106,15 @@ const restore = async ({ filepath }) => {
     }
 
     console.log("WRITING GALLERY");
-    for (const image of dataJSON.gallery) {
+    for (const media of dataJSON.gallery) {
       await prisma.gallery.create({
         data: {
-          id: image.id,
-          title: image.title,
-          published: image.published,
-          image: image.image,
-          date: image.date,
-          authorId: image.authorId,
+          id: media.id,
+          title: media.title,
+          published: media.published,
+          media: media.media,
+          date: media.date,
+          authorId: media.authorId,
         },
       });
     }

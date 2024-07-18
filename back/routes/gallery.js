@@ -28,7 +28,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.json());
 
 router.get("/", authenticateToken, async function (req, res) {
-  const images = await prisma.gallery.findMany({
+  const medias = await prisma.gallery.findMany({
     include: {
       author: true,
     },
@@ -37,20 +37,14 @@ router.get("/", authenticateToken, async function (req, res) {
     },
   });
 
-  // modify the key image to media
-  images.forEach((image) => {
-    image.media = image.image;
-    delete image.image;
-  });
-
-  res.json(images);
+  res.json(medias);
 });
 
 router.get("/page/:page", getUser, async function (req, res) {
   try {
-    var imagePerPage = 12;
+    var mediaPerPage = 12;
     if (req.query.nb) {
-      imagePerPage = parseInt(req.query.nb);
+      mediaPerPage = parseInt(req.query.nb);
     }
     const page = req.params.page;
 
@@ -69,8 +63,8 @@ router.get("/page/:page", getUser, async function (req, res) {
         orderBy: {
           date: "desc",
         },
-        skip: (page - 1) * imagePerPage,
-        take: imagePerPage,
+        skip: (page - 1) * mediaPerPage,
+        take: mediaPerPage,
       });
     } else {
       medias = await prisma.gallery.findMany({
@@ -83,19 +77,13 @@ router.get("/page/:page", getUser, async function (req, res) {
         where: {
           published: true,
         },
-        skip: (page - 1) * imagePerPage,
-        take: imagePerPage,
+        skip: (page - 1) * mediaPerPage,
+        take: mediaPerPage,
       });
     }
 
     const totalMedias = await prisma.gallery.count();
-    const totalPages = Math.ceil(totalMedias / imagePerPage);
-
-    // modify the key image to media
-    medias.forEach((media) => {
-      media.media = media.image;
-      delete media.image;
-    });
+    const totalPages = Math.ceil(totalMedias / mediaPerPage);
 
     res.json({ medias, totalPages, totalMedias });
   } catch (error) {
@@ -108,21 +96,17 @@ router.get("/:id", authenticateToken, async function (req, res) {
   try {
     const id = req.params.id;
 
-    const image = await prisma.gallery.findUnique({
+    const media = await prisma.gallery.findUnique({
       where: {
         id: id,
       },
     });
-    if (image === null) {
-      res.status(404).json({ error: "Image not found" });
+    if (media === null) {
+      res.status(404).json({ error: "Media not found" });
       return;
     }
 
-    // modify the key image to media
-    image.media = image.image;
-    delete image.image;
-
-    res.json(image);
+    res.json(media);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -135,7 +119,7 @@ router.post(
   upload.single("media"),
   async function (req, res) {
     var { title, date, author, published } = req.body;
-    const image = req.file.filename;
+    const media = req.file.filename;
     console.log(published);
     if (published === "true") {
       published = true;
@@ -143,10 +127,10 @@ router.post(
       published = false;
     }
 
-    const newImage = await prisma.gallery.create({
+    const newMedia = await prisma.gallery.create({
       data: {
         title: title,
-        image: image,
+        media: media,
         published: published,
         date: date,
         authorId: author,
@@ -162,7 +146,7 @@ router.post(
       path.join(
         __dirname,
         "../uploads/gallery/" +
-          newImage.id +
+          newMedia.id +
           path.extname(req.file.originalname)
       ),
       function (err) {
@@ -175,14 +159,14 @@ router.post(
     // change the filename in the database
     await prisma.gallery.update({
       where: {
-        id: newImage.id,
+        id: newMedia.id,
       },
       data: {
-        image: newImage.id + path.extname(req.file.originalname),
+        media: newMedia.id + path.extname(req.file.originalname),
       },
     });
 
-    res.json(newImage);
+    res.json(newMedia);
   }
 );
 
@@ -195,32 +179,32 @@ router.put(
       const id = req.params.id;
       var { title, author, date, published } = req.body;
 
-      const imageData = await prisma.gallery.findUnique({
+      const mediaData = await prisma.gallery.findUnique({
         where: {
           id: id,
         },
       });
 
-      if (imageData === null) {
-        res.status(404).json({ error: "Image not found" });
+      if (mediaData === null) {
+        res.status(404).json({ error: "Media not found" });
         return;
       }
 
-      // if the user is not admin or owner or editor, and is not the author of the image, then he can't edit the image
+      // if the user is not admin or owner or editor, and is not the author of the media, then he can't edit the media
       if (
         req.user.privilege !== "admin" &&
         req.user.privilege !== "owner" &&
         req.user.privilege !== "editor" &&
-        req.user.id !== imageData.authorId
+        req.user.id !== mediaData.authorId
       ) {
         res
           .status(403)
-          .json({ error: "You are not allowed to edit this image" });
+          .json({ error: "You are not allowed to edit this media" });
         return;
       }
 
       // if the user is editor, he can't change the authorId
-      if (req.user.privilege === "editor" && imageData.authorId !== author) {
+      if (req.user.privilege === "editor" && mediaData.authorId !== author) {
         res
           .status(403)
           .json({ error: "You are not allowed to put another authorId" });
@@ -231,7 +215,7 @@ router.put(
       if (req.file) {
         // delete the old file
         fs.unlink(
-          path.join(__dirname, "../uploads/gallery/" + imageData.image),
+          path.join(__dirname, "../uploads/gallery/" + mediaData.media),
           function (err) {
             if (err) {
               console.log("ERROR: " + err);
@@ -256,25 +240,25 @@ router.put(
           }
         );
 
-        const updatedImage = await prisma.gallery.update({
+        const updatedMedia = await prisma.gallery.update({
           where: {
             id: id,
           },
           data: {
             title,
-            image: id + path.extname(req.file.originalname),
+            media: id + path.extname(req.file.originalname),
             authorId: author,
             published,
             date,
           },
         });
 
-        // modify the key image to media
-        updatedImage.media = updatedImage.image;
-        delete updatedImage.image;
-        res.json(updatedImage);
+        // modify the key media to media
+        updatedMedia.media = updatedMedia.media;
+        delete updatedMedia.media;
+        res.json(updatedMedia);
       } else {
-        const updatedImage = await prisma.gallery.update({
+        const updatedMedia = await prisma.gallery.update({
           where: {
             id: id,
           },
@@ -285,10 +269,7 @@ router.put(
             date,
           },
         });
-        // modify the key image to media
-        updatedImage.media = updatedImage.image;
-        delete updatedImage.image;
-        res.json(updatedImage);
+        res.json(updatedMedia);
       }
     } catch (error) {
       console.log(error);
@@ -300,33 +281,33 @@ router.put(
 router.delete("/:id", authenticateToken, async function (req, res) {
   try {
     const id = req.params.id;
-    const image = await prisma.gallery.findUnique({
+    const media = await prisma.gallery.findUnique({
       where: {
         id: id,
       },
     });
 
-    if (image === null) {
-      res.status(404).json({ error: "Image not found" });
+    if (media === null) {
+      res.status(404).json({ error: "Media not found" });
       return;
     }
 
-    // if the user is not admin or owner or editor, and is not the author of the image, then he can't delete the image
+    // if the user is not admin or owner or editor, and is not the author of the media, then he can't delete the media
     if (
       req.user.privilege !== "admin" &&
       req.user.privilege !== "owner" &&
       req.user.privilege !== "editor" &&
-      req.user.id !== image.authorId
+      req.user.id !== media.authorId
     ) {
       res
         .status(403)
-        .json({ error: "You are not allowed to delete this image" });
+        .json({ error: "You are not allowed to delete this media" });
       return;
     }
 
     // delete the file
     fs.unlink(
-      path.join(__dirname, "../uploads/gallery/" + image.image),
+      path.join(__dirname, "../uploads/gallery/" + media.media),
       function (err) {
         if (err) {
           console.log("ERROR: " + err);
@@ -339,7 +320,7 @@ router.delete("/:id", authenticateToken, async function (req, res) {
         id: id,
       },
     });
-    res.json({ message: "Image deleted" });
+    res.json({ message: "Media deleted" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });

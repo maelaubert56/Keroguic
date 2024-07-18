@@ -148,7 +148,7 @@ router.post(
 
       // if the username is already taken, return an error
       if (user) {
-        // remove the image
+        // remove the media
         fs.unlinkSync(
           path.join(__dirname, "../uploads/pp/temp" + path.extname(filename))
         );
@@ -274,7 +274,7 @@ router.post(
         );
       }
 
-      var image = req.file
+      var media = req.file
         ? user.username + path.extname(req.file.filename)
         : user.picture;
       // update the user information in the database
@@ -286,7 +286,7 @@ router.post(
             name,
             password: encryptedPassword,
             privilege,
-            picture: image,
+            picture: media,
           },
         });
       } else {
@@ -295,7 +295,7 @@ router.post(
           data: {
             name,
             privilege,
-            picture: image,
+            picture: media,
           },
         });
       }
@@ -351,7 +351,7 @@ router.delete("/delete/:id", authenticateToken, async (req, res) => {
       where: { id: user.id },
     });
 
-    // delete the user's image
+    // delete the user's media
     if (user.picture) {
       try {
         fs.unlinkSync(path.join(__dirname, "../uploads/pp", user.picture));
