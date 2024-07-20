@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./index.css";
@@ -20,10 +20,11 @@ import EditUser from "./pages/admin/users/Edit";
 import Header from "./pages/components/Header";
 import Footer from "./pages/components/Footer";
 
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
     <Router>
       <Routes>
         <Route
@@ -156,5 +157,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </Router>
     <Footer />
     <ToastContainer />
-  </React.StrictMode>
+  </StrictMode>
 );

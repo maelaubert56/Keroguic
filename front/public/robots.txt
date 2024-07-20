@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /admin/*
 
-Sitemap: www.keroguic.fr/sitemap.xml
+Sitemap: https://www.keroguic.fr/sitemap.xml

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import MDEditor from "@uiw/react-md-editor";
+import { useState, useEffect, Suspense, lazy } from "react";
+
+const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 
 const Edit = () => {
   const [me, setMe] = useState(null);
@@ -172,11 +173,13 @@ const Edit = () => {
       </div>
       <div className="mb-2 p-2 h-[70vh] w-full gap-2 flex flex-col text-center">
         <p>Ecrivez votre texte à gauche, vous verrez le rendu à droite.</p>
-        <MDEditor
-          height="100%"
-          value={post.content}
-          onChange={(e) => setPost({ ...post, content: e })}
-        />
+        <Suspense fallback={<div>Loading editor...</div>}>
+          <MDEditor
+            height="100%"
+            value={post.content}
+            onChange={(e) => setPost({ ...post, content: e })}
+          />
+        </Suspense>
       </div>
       <button
         className="bg-blue-500 text-white p-2 rounded-md min-w-60 hover:bg-blue-700"

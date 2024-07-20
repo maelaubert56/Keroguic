@@ -1,5 +1,4 @@
-import PropTypes from "prop-types";
-
+/* eslint-disable react/prop-types */
 const Header = ({ page }) => {
   // component code here
   return (
@@ -91,10 +90,6 @@ const Header = ({ page }) => {
       </div>
     </>
   );
-};
-
-Header.propTypes = {
-  page: PropTypes.string.isRequired,
 };
 
 export default Header;
