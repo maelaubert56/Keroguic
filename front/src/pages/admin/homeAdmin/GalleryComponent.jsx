@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import LinkIcon from "../../../assets/linkIcon.svg";
 
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const ArticleComponent = ({ me }) => {
   const [openDeleteMedia, setOpenDeleteMedia] = useState(null);
