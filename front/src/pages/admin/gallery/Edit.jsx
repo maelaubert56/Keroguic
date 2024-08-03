@@ -137,7 +137,7 @@ const Edit = () => {
           id="media"
           className="border-2 border-gray-300 w-full pl-2 py-1 text-sm"
           type="file"
-          accept="media/*,video/*"
+          accept="image/*, video/*"
           onChange={(e) => setMedia({ ...media, media: e.target.files[0] })}
         />
         <div className="flex flex-col gap-1 items-center rounded-lg border-2 border-gray-300 p-2">
