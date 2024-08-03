@@ -47,7 +47,14 @@ const backup = async () => {
     console.log("GENERATING ZIP");
     const zipData = await zip.generateAsync({ type: "nodebuffer" });
 
-    fs.writeFileSync("./saves/backup" + Date.now() + ".zip", zipData);
+    const currentDate = new Date();
+    currentDate.setUTCHours(currentDate.getUTCHours() + 2);
+    const formattedDate = currentDate
+      .toISOString()
+      .replace(/[T]/g, "-")
+      .replace(/:/g, "-")
+      .slice(0, 19);
+    fs.writeFileSync(`./saves/backup_${formattedDate}.zip`, zipData);
     console.log("DELETING DATA.JSON");
     fs.unlinkSync("data.json");
     console.log("BACKUP DONE");

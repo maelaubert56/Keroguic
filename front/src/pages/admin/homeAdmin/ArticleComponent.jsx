@@ -18,6 +18,14 @@ const ArticleComponent = ({ me }) => {
     }
   }, [me, page]);
 
+  useEffect(() => {
+    if (openDeleteArticle !== null) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [openDeleteArticle]);
+
   const fetchArticles = () => {
     fetch(`${import.meta.env.VITE_API_URL}/posts/page/${page}?nb=5&all=true`, {
       method: "GET",
@@ -184,9 +192,9 @@ const ArticleComponent = ({ me }) => {
                           Supprimer
                         </button>
                       </td>
-                      {openDeleteArticle && (
+                      {openDeleteArticle === article.id && (
                         <div
-                          className="absolute top-0 left-0 w-screen h-screen flex flex-col justify-center items-center backdrop-filter backdrop-blur-sm"
+                          className="fixed top-0 left-0 w-screen h-screen flex flex-col justify-center items-center backdrop-filter backdrop-blur-sm"
                           onClick={() => setOpenDeleteArticle(null)}
                         >
                           <div
@@ -196,7 +204,9 @@ const ArticleComponent = ({ me }) => {
                             <h2 className="mb-2">Confirmer la suppression</h2>
                             <span className="text-sm font-semibold text-center gap-2 border p-2 rounded-md">
                               <p>{article.title}</p>
-                              <p>{article.date}</p>
+                              <p>
+                                {new Date(article.date).toLocaleDateString()}
+                              </p>
                               <p>{article.author.name}</p>
                             </span>
                             <div className="flex flex-row gap-5 w-full justify-center items-center mt-5">
