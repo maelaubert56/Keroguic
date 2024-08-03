@@ -1,11 +1,10 @@
-import { useState, useEffect, Suspense, lazy } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import MDEditor from "@uiw/react-md-editor";
 
 const Article = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
-
-  const Markdown = lazy(() => import("@uiw/react-md-editor"));
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/posts/${id}`, {
@@ -29,9 +28,7 @@ const Article = () => {
           </h1>
 
           <div className="mt-4 w-full">
-            <Suspense fallback={<div>Loading...</div>}>
-              <Markdown source={article.content} />
-            </Suspense>
+            <MDEditor.Markdown source={article?.content} />
           </div>
           <div className="flex w-full flex-row gap-2 justify-start items-center">
             <img

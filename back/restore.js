@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 
 const restore = async ({ filepath }) => {
   try {
+    console.log("RESTORING DATA FROM ", filepath);
     const data = fs.readFileSync(filepath);
     const zip = await jszip.loadAsync(data);
 
@@ -125,9 +126,23 @@ const restore = async ({ filepath }) => {
   }
 };
 
-var filepath = process.argv[2];
+var filepath = process.argv[2]; // so the command is : node restore.js path/to/backup.zip
 
 if (!filepath) {
-  filepath = "./saves/backup.zip";
+  // go to saves folder and get the latest backup
+  const files = fs.readdirSync("./saves");
+  const backups = files.filter((file) => file.startsWith("backup_"));
+  // files are in the format backup_YYYY-MM-DD-HH-mm-ss.zip
+  backups.sort((a, b) => {
+    const dateA = new Date(a.slice(7, 26));
+    const dateB = new Date(b.slice(7, 26));
+    return dateA - dateB;
+  });
+  filepath = path.join("saves", backups[backups.length - 1]);
+
+  if (!filepath) {
+    console.log("No backup found");
+    process.exit(1);
+  }
 }
 restore({ filepath: filepath });

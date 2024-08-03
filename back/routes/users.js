@@ -37,21 +37,21 @@ router.post("/login", async (req, res) => {
     });
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "Cet utilisateur n'existe pas" });
     }
 
     // check if password is correct
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      return res.status(401).json({ message: "Incorrect password" });
+      return res.status(401).json({ message: "Mot de passe incorrect" });
     }
 
     // generate access token for the user
     const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
 
     // send the access token to the client
-    res.status(200).json({ token });
+    res.status(200).json({ token, message: "ok" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server error" });

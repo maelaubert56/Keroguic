@@ -73,6 +73,22 @@ const ArticleComponent = ({ me }) => {
       });
   };
 
+  useEffect(() => {
+    if (openPreviewMedia !== null) {
+      document.body.classList.add("overflow-y-hidden");
+    } else {
+      document.body.classList.remove("overflow-y-hidden");
+    }
+  }, [openPreviewMedia]);
+
+  useEffect(() => {
+    if (openDeleteMedia !== null) {
+      document.body.classList.add("overflow-y-hidden");
+    } else {
+      document.body.classList.remove("overflow-y-hidden");
+    }
+  }, [openDeleteMedia]);
+
   return (
     <div className="flex w-full flex-col justify-center items-center gap-5 p-5 ">
       <h2 className="text-2xl font-librebaskervillebold">Galerie</h2>
@@ -192,7 +208,7 @@ const ArticleComponent = ({ me }) => {
                       </td>
                       <td className="p-2 flex flex-row gap-2 items-center justify-center h-full">
                         <button
-                          className={`bg-blue-500 text-white p-2 text-xs rounded-lg hover:bg-blue-700`}
+                          className={`bg-blue-500 text-white p-2 text-xs rounded-lg hover:bg-blue-700 h-7`}
                           onClick={() => {
                             // add the link to the media in the clipboard
                             navigator.clipboard.writeText(
@@ -205,11 +221,15 @@ const ArticleComponent = ({ me }) => {
                             });
                           }}
                         >
-                          <img src={LinkIcon} alt="link" className="w-4 h-4" />
+                          <img
+                            src={LinkIcon}
+                            alt="link"
+                            className="w-full h-full"
+                          />
                         </button>
 
                         <button
-                          className={`bg-blue-500 text-white p-2 text-xs rounded-lg hover:bg-blue-700 ${
+                          className={`bg-blue-500 text-white p-2 text-xs rounded-lg hover:bg-blue-700 h-7${
                             media.author.id !== me.id &&
                             me.privilege !== "owner" &&
                             me.privilege !== "admin" &&
@@ -224,7 +244,7 @@ const ArticleComponent = ({ me }) => {
                         </button>
 
                         <button
-                          className={`bg-red-500 text-white p-2 text-xs rounded-lg hover:bg-red-700 ${
+                          className={`bg-red-500 text-white p-2 text-xs rounded-lg hover:bg-red-700 h-7${
                             media.author.id !== me.id &&
                             me.privilege !== "owner" &&
                             me.privilege !== "admin" &&
@@ -238,17 +258,18 @@ const ArticleComponent = ({ me }) => {
                       </td>
                       {openPreviewMedia === media.id && (
                         <div
-                          className="absolute top-0 left-0 w-screen h-screen flex flex-col justify-center items-center backdrop-filter backdrop-blur-sm"
+                          className="fixed top-0 left-0 w-screen h-screen flex flex-col justify-center items-center backdrop-filter backdrop-blur-sm"
                           onClick={() => setOpenPreviewMedia(null)}
                         >
                           <div
-                            className="bg-white p-5 rounded-lg flex flex-col justify-center items-center gap-5"
+                            className="bg-white p-2 rounded-lg flex flex-col justify-center items-center gap-5 max-w-[80%] max-h-[80%] overflow-y-auto shadow-xl"
                             onClick={(e) => e.stopPropagation()}
                           >
+                            <p className="text-sm font-semibold">&nbsp;</p>
                             <h2>{media.title}</h2>
                             {media.media.includes(".mp4") ? (
                               <video
-                                className="w-10 rounded-md"
+                                className="max-w-[90%] max-h-[90%] rounded-md object-cover"
                                 src={`${
                                   import.meta.env.VITE_API_URL
                                 }/uploads/gallery/${media.media}`}
@@ -257,7 +278,7 @@ const ArticleComponent = ({ me }) => {
                               />
                             ) : (
                               <img
-                                className="w-10 rounded-md"
+                                className="max-w-[90%] max-h-[90%] rounded-md object-cover"
                                 src={`${
                                   import.meta.env.VITE_API_URL
                                 }/uploads/gallery/${media.media}`}
@@ -269,7 +290,7 @@ const ArticleComponent = ({ me }) => {
                       )}
                       {openDeleteMedia === media.id && (
                         <div
-                          className="absolute top-0 left-0 w-screen h-screen flex flex-col justify-center items-center backdrop-filter backdrop-blur-sm"
+                          className="fixed top-0 left-0 w-screen h-screen flex flex-col justify-center items-center backdrop-filter backdrop-blur-sm"
                           onClick={() => setOpenDeleteMedia(null)}
                         >
                           <div
@@ -291,7 +312,7 @@ const ArticleComponent = ({ me }) => {
                               alt={media.title}
                             />
                             <p className="text-sm font-semibold">
-                              {media.date}
+                              {new Date(media.date).toLocaleDateString()}
                             </p>
                             <p className="text-sm font-semibold">
                               {media.author.name}
