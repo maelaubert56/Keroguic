@@ -67,7 +67,7 @@ const Home = () => {
           <h1 className="text-3xl">Fête des vieux métiers</h1>
           <h2 className="text-2xl">-</h2>
           <h2 className="text-2xl">Baud</h2>
-          <h2 className="text-2xl">15 août 2023</h2>
+          <h2 className="text-2xl">15 août 2024</h2>
         </div>
         <a
           className="bg-white rounded-xl p-2 m-2 shadow-lg hover:bg-gray-200"
@@ -152,9 +152,8 @@ const Home = () => {
               <span className="text-center leading-tight">
                 <p className="text-sm">FEST-NOZ</p>
                 <h3 className="text-xl font-librebaskervillebold">
-                  Sonerien Du
+                  Sonerien Du & Carré Manchot
                 </h3>
-                <span>&amp; Duo Blain-Leyzour</span>
               </span>
             </TimeEvent>
           </div>
