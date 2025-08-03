@@ -67,7 +67,7 @@ const Home = () => {
           <h1 className="text-3xl">Fête des vieux métiers</h1>
           <h2 className="text-2xl">-</h2>
           <h2 className="text-2xl">Baud</h2>
-          <h2 className="text-2xl">15 août 2024</h2>
+          <h2 className="text-2xl">15 août 2025</h2>
         </div>
         <a
           className="bg-white rounded-xl p-2 m-2 shadow-lg hover:bg-gray-200"
@@ -93,7 +93,7 @@ const Home = () => {
         <div className="w-full flex flex-col lg:flex-row items-center lg:justify-evenly justify-center gap-2">
           <div className="flex flex-row justify-center items-center gap-2">
             <h3 className="font-librebaskervillebold text-lg">Gratuit</h3>
-            <p>pour une arrivée avant 12h</p>
+            <p>pour une arrivée avant 13h30</p>
           </div>
           <div className="flex flex-row justify-center items-center gap-2">
             <h3 className="font-librebaskervillebold text-lg">5€</h3>
@@ -139,7 +139,7 @@ const Home = () => {
             <TimeEvent time={"18h30"}>
               <span className="text-center leading-tight">
                 <p className="text-sm">CONCERT</p>
-                <h3 className="text-xl font-librebaskervillebold">Gwennyn</h3>
+                <h3 className="text-xl font-librebaskervillebold">Madelyn-Ann</h3>
               </span>
             </TimeEvent>
 
@@ -152,7 +152,7 @@ const Home = () => {
               <span className="text-center leading-tight">
                 <p className="text-sm">FEST-NOZ</p>
                 <h3 className="text-xl font-librebaskervillebold">
-                  Sonerien Du & Carré Manchot
+                  Sonerien Du & Martin Hamon Quintet
                 </h3>
               </span>
             </TimeEvent>
