@@ -31,6 +31,9 @@ const Header = ({ page }) => {
           <li className={`${page === "galerie" && "active"}`}>
             <a href="/galerie">Galerie</a>
           </li>
+          <li className={`${page === "tarifs" && "active"}`}>
+            <a href="/tarifs">Tarifs</a>
+          </li>
           <li className={`${page === "a-propos" && "active"}`}>
             <a href="/a-propos">A propos</a>
           </li>
@@ -85,6 +88,12 @@ const Header = ({ page }) => {
             className="p-5 border-b border-b-white/40 cursor-pointer"
           >
             GALERIE
+          </li>
+          <li
+            onClick={() => (window.location.href = "/tarifs")}
+            className="p-5 border-b border-b-white/40 cursor-pointer"
+          >
+            TARIFS
           </li>
         </ul>
       </div>
