@@ -46,10 +46,14 @@ const deleteAll = async () => {
   const filesGallery = fs.readdirSync(gallery);
   const filesPp = fs.readdirSync(pp);
   filesGallery.forEach((file) => {
-    fs.unlinkSync(path.join(gallery, file));
+    if (file !== ".gitkeep") {
+      fs.unlinkSync(path.join(gallery, file));
+    }
   });
   filesPp.forEach((file) => {
-    fs.unlinkSync(path.join(pp, file));
+    if (file !== "default_pp.png" && file !== ".gitkeep") {
+      fs.unlinkSync(path.join(pp, file));
+    }
   });
 };
 
@@ -58,9 +62,9 @@ const usersRequest = () => {
     {
       username: "root",
       name: "root",
-      password: "$2a$10$Buckb7hNhzVxZqswq/mBm.pIyMuX0A2KTElyBYjXxkZw70ks2ncJW",
+      password: "$2a$10$q3sKE2FtgjCkIipd7Ahfe.DqXOnd7QUnvoghnRAnji0ZyRigEZQcu",
       privilege: "owner",
-      picture: "https://randomuser.me/api/portraits/women/29.jpg",
+      picture: "default_pp.png",
     },
   ];
 

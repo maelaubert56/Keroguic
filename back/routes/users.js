@@ -36,12 +36,16 @@ router.post("/login", async (req, res) => {
       where: { username },
     });
 
+    console.log("User found: ", user);
+
     if (!user) {
       return res.status(404).json({ message: "Cet utilisateur n'existe pas" });
     }
 
     // check if password is correct
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    console.log("Password correct: ", isPasswordCorrect);
 
     if (!isPasswordCorrect) {
       return res.status(401).json({ message: "Mot de passe incorrect" });
@@ -134,7 +138,6 @@ router.post(
   upload.single("picture"),
   async (req, res) => {
     const { username, name, password, privilege } = req.body;
-    const { filename } = req.file;
     try {
       // get the user information from the database
       const askingUser = await prisma.users.findUnique({
@@ -148,10 +151,12 @@ router.post(
 
       // if the username is already taken, return an error
       if (user) {
-        // remove the media
-        fs.unlinkSync(
-          path.join(__dirname, "../uploads/pp/temp" + path.extname(filename))
-        );
+        // remove the media if it exists
+        if (req.file) {
+          fs.unlinkSync(
+            path.join(__dirname, "../uploads/pp/temp" + path.extname(req.file.filename))
+          );
+        }
         return res.status(409).json({ message: "Username already taken" });
       }
 
@@ -171,11 +176,16 @@ router.post(
         return res.status(403).json({ message: "Forbidden" });
       }
 
-      // edit the filename to the correct one
-      fs.renameSync(
-        path.join(__dirname, "../uploads/pp/temp" + path.extname(filename)),
-        path.join(__dirname, "../uploads/pp", username + path.extname(filename))
-      );
+      // handle profile picture
+      let pictureFilename = "default_pp.png"; // default picture
+      if (req.file) {
+        // edit the filename to the correct one
+        fs.renameSync(
+          path.join(__dirname, "../uploads/pp/temp" + path.extname(req.file.filename)),
+          path.join(__dirname, "../uploads/pp", username + path.extname(req.file.filename))
+        );
+        pictureFilename = username + path.extname(req.file.filename);
+      }
 
       // create the user in the database
       const newUser = await prisma.users.create({
@@ -184,7 +194,7 @@ router.post(
           name,
           password: await bcrypt.hash(password, saltRounds),
           privilege,
-          picture: username + path.extname(filename),
+          picture: pictureFilename,
         },
       });
 

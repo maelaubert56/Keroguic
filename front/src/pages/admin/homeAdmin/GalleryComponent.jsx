@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 
 import { useState, useEffect } from "react";
+import { getPageParam } from "../../../utils/pagination";
 import LinkIcon from "../../../assets/linkIcon.svg";
 
 import { toast } from "react-toastify";
@@ -11,7 +12,7 @@ const ArticleComponent = ({ me }) => {
   const [openPreviewMedia, setOpenPreviewMedia] = useState(null);
 
   const [galerie, setGalerie] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(getPageParam(1));
   const [totalPages, setTotalPages] = useState(1);
   const [totalMedias, setTotalMedias] = useState(0);
 

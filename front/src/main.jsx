@@ -17,8 +17,8 @@ import AddGallery from "./pages/admin/gallery/Add";
 import EditGallery from "./pages/admin/gallery/Edit";
 import AddUser from "./pages/admin/users/Add";
 import EditUser from "./pages/admin/users/Edit";
-import Header from "./pages/components/Header";
-import Footer from "./pages/components/Footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Tarifs from "./pages/Tarifs";
 
 import "react-toastify/dist/ReactToastify.css";

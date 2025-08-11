@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
+import { getPageParam } from "../../../utils/pagination";
 
 const ArticleComponent = ({ me }) => {
   const [onlyMyPosts, setOnlyMyPosts] = useState(false);
   const [openDeleteArticle, setOpenDeleteArticle] = useState(null);
   const [articles, setArticles] = useState([]);
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(getPageParam(1));
   const [totalPages, setTotalPages] = useState(1);
   const [totalPosts, setTotalPosts] = useState(0);
 

@@ -121,10 +121,17 @@ router.post(
     var { title, date, author, published } = req.body;
     const media = req.file.filename;
     console.log(published);
+
+    // Convert published from string to boolean
     if (published === "true") {
       published = true;
     } else {
       published = false;
+    }
+
+    // Convert date to ISO string if it's not already
+    if (date && typeof date === 'string' && !date.includes('T')) {
+      date = new Date(date).toISOString();
     }
 
     const newMedia = await prisma.gallery.create({
@@ -146,8 +153,8 @@ router.post(
       path.join(
         __dirname,
         "../uploads/gallery/" +
-          newMedia.id +
-          path.extname(req.file.originalname)
+        newMedia.id +
+        path.extname(req.file.originalname)
       ),
       function (err) {
         if (err) {
@@ -178,6 +185,23 @@ router.put(
     try {
       const id = req.params.id;
       var { title, author, date, published } = req.body;
+
+      // Convert published from string to boolean
+      if (published === "true") {
+        published = true;
+      } else if (published === "false") {
+        published = false;
+      }
+
+      // Convert date to ISO string if it's not already
+      if (date && typeof date === 'string' && !date.includes('T')) {
+        date = new Date(date).toISOString();
+      }
+
+      // If no author is provided, keep the existing one
+      if (!author) {
+        author = req.user.id;
+      }
 
       const mediaData = await prisma.gallery.findUnique({
         where: {
