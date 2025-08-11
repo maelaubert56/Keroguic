@@ -19,6 +19,7 @@ import AddUser from "./pages/admin/users/Add";
 import EditUser from "./pages/admin/users/Edit";
 import Header from "./pages/components/Header";
 import Footer from "./pages/components/Footer";
+import Tarifs from "./pages/Tarifs";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -141,6 +142,15 @@ createRoot(document.getElementById("root")).render(
             <>
               <Header page={"admin"} />
               <EditUser />
+            </>
+          }
+        />
+        <Route
+          path="/tarifs"
+          element={
+            <>
+              <Header page={"tarifs"} />
+              <Tarifs />
             </>
           }
         />
