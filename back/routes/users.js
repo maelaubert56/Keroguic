@@ -356,6 +356,23 @@ router.delete("/delete/:id", authenticateToken, async (req, res) => {
         .json({ message: "Forbidden, can't delete yourself" });
     }
 
+    // réassigner les posts et médias de l'utilisateur supprimé à l'utilisateur demandeur
+    try {
+      await prisma.$transaction([
+        prisma.posts.updateMany({
+          where: { authorId: user.id },
+          data: { authorId: askingUser.id },
+        }),
+        prisma.gallery.updateMany({
+          where: { authorId: user.id },
+          data: { authorId: askingUser.id },
+        }),
+      ]);
+    } catch (err) {
+      console.log('Erreur réassignation contenu utilisateur', err);
+      return res.status(500).json({ message: 'Failed to reassign user content' });
+    }
+
     // delete the user from the database
     await prisma.users.delete({
       where: { id: user.id },
@@ -371,7 +388,7 @@ router.delete("/delete/:id", authenticateToken, async (req, res) => {
     }
 
     // send the user information to the client
-    res.status(200).json({ message: "Account deleted" });
+    res.status(200).json({ message: "Account deleted and content reassigned" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server error" });

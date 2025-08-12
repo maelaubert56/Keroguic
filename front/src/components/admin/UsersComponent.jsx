@@ -133,7 +133,7 @@ const UsersComponent = ({ me, users }) => {
             <DialogTitle>Confirmer la suppression</DialogTitle>
             <DialogDescription>
               Êtes-vous sûr de vouloir supprimer l&apos;utilisateur &quot;{openDeleteUser?.name}&quot; ? 
-              Cette action est irréversible.
+              Cette action est irréversible. Tous ses articles et médias seront réattribués à votre compte avant suppression.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

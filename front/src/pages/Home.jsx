@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Section = ({ children, className }) => (
   <div
@@ -57,6 +58,22 @@ const Home = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = "Fête des vieux métiers – 15 août Baud";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.name = "description";
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.content =
+      "Découvrez la fête des vieux métiers à Baud : programme, tarifs, galerie des éditions précédentes et actualités.";
+    return () => {
+      document.title = prevTitle;
+    };
+  }, []);
+
   return (
     <main className="font-librebaskervilleregular">
       <div
@@ -69,12 +86,12 @@ const Home = () => {
           <h2 className="text-2xl">Baud</h2>
           <h2 className="text-2xl">15 août 2025</h2>
         </div>
-        <a
+        <Link
           className="bg-white rounded-xl p-2 m-2 shadow-lg hover:bg-gray-200"
-          href="/blog"
+          to="/blog"
         >
           Voir les actualités de la fête
-        </a>
+        </Link>
       </div>
 
       <Section className="m-7 p-12 rounded-2xl lg:flex-row flex-col justify-between items-center gap-12 z-1 -mt-5 bg-white shadow-lg">
@@ -122,7 +139,7 @@ const Home = () => {
             <img
               className="w-[100px] lg:hidden lazy"
               data-src="assets/img/separation.png"
-              alt="separation"
+              alt="Séparateur décoratif"
             />
             <TimeEvent time={"12h"}>
               <p className="text-sm">
@@ -134,7 +151,7 @@ const Home = () => {
             <img
               className="w-[100px] lg:hidden lazy"
               data-src="assets/img/separation.png"
-              alt="separation"
+              alt="Séparateur décoratif"
             />
             <TimeEvent time={"18h30"}>
               <span className="text-center leading-tight">
@@ -146,7 +163,7 @@ const Home = () => {
             <img
               className="w-[100px] lg:hidden lazy"
               data-src="assets/img/separation.png"
-              alt="separation"
+              alt="Séparateur décoratif"
             />
             <TimeEvent time={"21h"}>
               <span className="text-center leading-tight">

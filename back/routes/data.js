@@ -91,7 +91,8 @@ router.get("/save", authenticateToken, async (req, res) => {
 router.post(
   "/restore",
   authenticateToken,
-  upload.single("zip"),
+  // anciennement upload.single("zip")
+  upload.single("file"),
   async (req, res) => {
     // if the user is owner, restore the data from the zip file
     // the zip file contains the upload/pp and upload/gallery folder in a upload folder
@@ -101,7 +102,7 @@ router.post(
     try {
       if (req.user.privilege === "owner") {
         if (!req.file) {
-          res.status(400).json({ message: "No file uploaded" });
+          res.status(400).json({ message: "No file uploaded (champ attendu: 'file')" });
           return;
         }
         const zipFile = req.file;

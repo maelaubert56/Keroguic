@@ -92,13 +92,15 @@ const MeComponent = ({ me }) => {
   };
 
   return (
-    <Card className="w-full max-w-2xl">
+    <Card className="w-full max-w-6xl">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span>Mon Profil</span>
-          <Badge variant={getPrivilegeVariant(me?.privilege)}>
-            {getPrivilegeLabel(me?.privilege)}
-          </Badge>
+          
+          <Button variant="destructive" onClick={handleLogout} size="sm">
+            <LogOut className="w-4 h-4 mr-2" />
+            Se déconnecter
+          </Button>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -111,18 +113,21 @@ const MeComponent = ({ me }) => {
             <AvatarFallback>
               {me?.name?.split(' ').map(n => n[0]).join('').toUpperCase()}
             </AvatarFallback>
+            
           </Avatar>
+          
           <div>
             <h3 className="text-xl font-semibold">{me?.name}</h3>
-            <p className="text-muted-foreground">@{me?.username}</p>
+            <p className="text-muted-foreground">@{me?.username}</p><Badge variant={getPrivilegeVariant(me?.privilege)}>
+            {getPrivilegeLabel(me?.privilege)}
+          </Badge>
           </div>
         </div>
+        
 
-        <div className="flex flex-wrap gap-2">
-          <Button variant="destructive" onClick={handleLogout}>
-            <LogOut className="w-4 h-4 mr-2" />
-            Se déconnecter
-          </Button>
+        <div className="flex flex-wrap gap-2 justify-between items-center">
+          <div className="flex items-center space-x-2">
+          
           
           <Button variant="outline" asChild>
             <a href={`/admin/user/edit/${me?.id}`}>
@@ -130,9 +135,10 @@ const MeComponent = ({ me }) => {
               Modifier mon profil
             </a>
           </Button>
+          </div>
 
           {me?.privilege === "owner" && (
-            <>
+            <div className="flex space-x-2">
               <Button variant="outline" onClick={handleBackup}>
                 <Download className="w-4 h-4 mr-2" />
                 Sauvegarder
@@ -142,7 +148,7 @@ const MeComponent = ({ me }) => {
                 <Upload className="w-4 h-4 mr-2" />
                 Restaurer
               </Button>
-            </>
+            </div>
           )}
         </div>
       </CardContent>

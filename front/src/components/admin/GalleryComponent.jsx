@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Edit, Trash2, Plus, Eye, Copy, Play } from "lucide-react";
+import { Edit, Trash2, Plus, Eye, Copy, Play, Film, Image as ImageIcon } from "lucide-react";
 import { useFetch } from "@/hooks/useFetch";
 import { usePagination } from "@/hooks/usePagination";
 import { getPaginationRange } from "@/utils/pagination";
@@ -103,21 +103,43 @@ const GalleryComponent = ({ me }) => {
             {medias.map((media) => (
               <TableRow key={media.id}>
                 <TableCell>
-                  <div className="relative">
-                    <img 
-                      src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${media.media}`}
-                      alt={media.title}
-                      className="w-12 h-12 object-cover rounded cursor-pointer"
-                      onClick={() => setOpenPreviewMedia(media)}
-                    />
-                    {isVideo(media.media) && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded cursor-pointer" onClick={() => setOpenPreviewMedia(media)}>
-                        <Play className="w-4 h-4 text-white" />
+                  <div className="relative w-12 h-12">
+                    {isVideo(media.media) ? (
+                      <div
+                        className="absolute inset-0 rounded overflow-hidden bg-black cursor-pointer"
+                        onClick={() => setOpenPreviewMedia(media)}
+                      >
+                        <video
+                          src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${media.media}`}
+                          className="w-full h-full object-cover block"
+                          muted
+                          preload="metadata"
+                          onLoadedMetadata={(e) => { e.currentTarget.currentTime = 0; }}
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                          <Play className="w-4 h-4 text-white" />
+                        </div>
                       </div>
+                    ) : (
+                      <img
+                        src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${media.media}`}
+                        alt={media.title}
+                        className="absolute inset-0 w-full h-full object-cover rounded cursor-pointer"
+                        onClick={() => setOpenPreviewMedia(media)}
+                      />
                     )}
                   </div>
                 </TableCell>
-                <TableCell className="font-medium">{media.title}</TableCell>
+                <TableCell className="font-medium">
+                  <span className="inline-flex items-center gap-1">
+                    {isVideo(media.media) ? (
+                      <Film className="w-4 h-4 text-blue-600" />
+                    ) : (
+                      <ImageIcon className="w-4 h-4 text-emerald-600" />
+                    )}
+                    {media.title}
+                  </span>
+                </TableCell>
                 <TableCell>{media.author?.name}</TableCell>
                 <TableCell>{formatDate(media.date || media.createdAt)}</TableCell>
                 <TableCell>
@@ -208,11 +230,20 @@ const GalleryComponent = ({ me }) => {
             <DialogDescription>{openPreviewMedia?.author?.name}</DialogDescription>
           </DialogHeader>
           <div className="flex justify-center">
-            <img 
-              src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${openPreviewMedia?.media}`}
-              alt={openPreviewMedia?.title}
-              className="max-w-full max-h-96 object-contain rounded"
-            />
+            {openPreviewMedia && isVideo(openPreviewMedia.media) ? (
+              <video
+                src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${openPreviewMedia.media}`}
+                controls
+                autoPlay
+                className="max-w-full max-h-96 rounded"
+              />
+            ) : (
+              <img 
+                src={`${import.meta.env.VITE_API_URL}/uploads/gallery/${openPreviewMedia?.media}`}
+                alt={openPreviewMedia?.title}
+                className="max-w-full max-h-96 object-contain rounded"
+              />
+            )}
           </div>
         </DialogContent>
       </Dialog>

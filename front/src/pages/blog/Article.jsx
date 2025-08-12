@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
 
 const Article = () => {
@@ -51,15 +51,30 @@ const Article = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (article) {
+      const prevTitle = document.title;
+      document.title = `${article.title} | Fête des vieux métiers`;
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement("meta");
+        metaDesc.name = "description";
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.content = article.content?.replace(/[#*_>`]/g, " ").slice(0, 155) || `Article du blog de la fête des vieux métiers.`;
+      return () => { document.title = prevTitle; };
+    }
+  }, [article]);
+
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8 py-16">
       {error ? (
         <div className="text-center">
           <h1 className="text-2xl font-librebaskervillebold mb-4">Article non trouvé</h1>
           <p className="text-gray-600">{error}</p>
-          <a href="/blog" className="text-blue-600 hover:underline mt-4 inline-block">
+          <Link to="/blog" className="text-blue-600 hover:underline mt-4 inline-block">
             ← Retour au blog
-          </a>
+          </Link>
         </div>
       ) : article ? (
         <div className="flex flex-col gap-10 p-4 w-full lg:w-2/3 justify-start items-center">
@@ -72,8 +87,8 @@ const Article = () => {
             {article.title}
           </h1>
 
-          <div className="mt-4 w-full">
-            <MDEditor.Markdown source={article?.content} />
+          <div className="mt-4 w-full" data-color-mode="light">
+              <MDEditor.Markdown source={article?.content} />
           </div>
           <div className="flex w-full flex-row gap-2 justify-start items-center">
             <img

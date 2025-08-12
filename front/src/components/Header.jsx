@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
+import { Link, NavLink } from "react-router-dom";
+
 const Header = ({ page }) => {
-  // component code here
   return (
     <>
       <header className="bottom_header flex flex-row justify-between m-0">
-        <a href="/" className="flex flex-row gap-2 items-center p-2">
+        <Link
+          to="/"
+          className="flex flex-row gap-2 items-center p-2"
+          aria-label="Accueil - Fête des vieux métiers"
+        >
           <img
             src="/assets/img/logo.png"
-            alt="logo"
+            alt="Logo de la fête des vieux métiers"
             className="h-16 rounded-2xl"
+            loading="lazy"
           />
           <span className="logo-text font-librebaskervillebold text-md uppercase leading-tight">
             Fête
@@ -17,27 +23,72 @@ const Header = ({ page }) => {
             <br />
             métiers
           </span>
-        </a>
-        <ul className="menu md:flex hidden flex-row mr-4 gap-4 items-center p-2 font-librebaskervilleregular">
-          <li className={`${page === "home" && "active"}`}>
-            <a href="/">Accueil</a>
-          </li>
-          <li className={`${page === "blog" && "active"}`}>
-            <a href="/blog">Blog</a>
-          </li>
-          <li className={`${page === "carte" && "active"}`}>
-            <a href="/carte">La carte du site</a>
-          </li>
-          <li className={`${page === "galerie" && "active"}`}>
-            <a href="/galerie">Galerie</a>
-          </li>
-          <li className={`${page === "tarifs" && "active"}`}>
-            <a href="/tarifs">Tarifs</a>
-          </li>
-          <li className={`${page === "a-propos" && "active"}`}>
-            <a href="/a-propos">A propos</a>
-          </li>
-        </ul>
+        </Link>
+        <nav aria-label="Navigation principale" className="md:flex hidden">
+          <ul className="menu flex flex-row mr-4 gap-4 items-center p-2 font-librebaskervilleregular">
+            <li>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  isActive || page === "home" ? "active" : undefined
+                }
+              >
+                Accueil
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/blog"
+                className={({ isActive }) =>
+                  isActive || page === "blog" ? "active" : undefined
+                }
+              >
+                Blog
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/carte"
+                className={({ isActive }) =>
+                  isActive || page === "carte" ? "active" : undefined
+                }
+              >
+                La carte du site
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/galerie"
+                className={({ isActive }) =>
+                  isActive || page === "galerie" ? "active" : undefined
+                }
+              >
+                Galerie
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/tarifs"
+                className={({ isActive }) =>
+                  isActive || page === "tarifs" ? "active" : undefined
+                }
+              >
+                Tarifs
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/a-propos"
+                className={({ isActive }) =>
+                  isActive || page === "a-propos" ? "active" : undefined
+                }
+              >
+                A propos
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
       </header>
     </>
   );

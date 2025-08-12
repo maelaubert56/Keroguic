@@ -139,6 +139,8 @@ const AddGallery = () => {
     return URL.createObjectURL(file);
   };
 
+  const isVideoFile = (file) => file && file.type && file.type.startsWith('video/');
+
   return (
     <div className="container mx-auto p-4 max-w-4xl">
       <div className="mb-6">
@@ -236,11 +238,19 @@ const AddGallery = () => {
                   <Label>Aperçu du média</Label>
                   <div className="flex justify-center">
                     <div className="relative">
-                      <img
-                        src={getFilePreview(selectedFiles[0])}
-                        alt="Aperçu du média"
-                        className="max-w-sm max-h-64 object-cover rounded-lg border"
-                      />
+                      {isVideoFile(selectedFiles[0]) ? (
+                        <video
+                          src={getFilePreview(selectedFiles[0])}
+                          className="max-w-sm max-h-64 rounded-lg border"
+                          controls
+                        />
+                      ) : (
+                        <img
+                          src={getFilePreview(selectedFiles[0])}
+                          alt="Aperçu du média"
+                          className="max-w-sm max-h-64 object-cover rounded-lg border"
+                        />
+                      )}
                       <div className="absolute bottom-1 left-1 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
                         {selectedFiles[0].name}
                       </div>

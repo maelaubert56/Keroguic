@@ -26,6 +26,11 @@
     position: relative;
 }
 
+.menu a:focus-visible{
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+
 .menu a::after{
     content: '→';
     position: absolute;
@@ -39,8 +44,8 @@
     transition: transform 0.3s ease-out;
 }
 
-.menu a:hover::after{
-    /* when we hover the menu, it be with a animation from left to right */
+.menu a:hover::after,
+.menu a.active::after{
     transform: scaleX(1);
     transform-origin: bottom left;
 }
@@ -51,7 +56,13 @@
     pointer-events: none;
 }
 
+/* Improve focus states globally */
+:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 
+/* Line clamp utility if plugin missing (ensure tailwind class exists) */
+/* Fallback: truncate multi-line with -webkit-line-clamp */
+.line-clamp-2{ display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-3{ display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
 .sidebarIconToggle {
     transition: all 0.3s;
