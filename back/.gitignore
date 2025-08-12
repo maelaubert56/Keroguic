@@ -4,6 +4,11 @@
 
 /uploads/gallery/*
 /uploads/pp/*
+!/uploads/gallery/.gitkeep
+!/uploads/pp/.gitkeep
+!/uploads/pp/default_pp.png
+
 
 /temp/*
+!/temp/.gitkeep
 /saves/*
