@@ -53,7 +53,7 @@ const Gallery = () => {
       className="flex flex-col items-center justify-center w-full p-4 gap-6 py-16"
       aria-label="Galerie médias"
     >
-      <h1 className="text-3xl font-librebaskervillebold">Galerie</h1>
+      <h1 className="text-3xl font-alegreyasc">Galerie</h1>
       <span className="text-sm" aria-live="polite">
         {totalMedias} médias
       </span>
@@ -94,7 +94,7 @@ const Gallery = () => {
                   loading="lazy"
                 />
               )}
-              <p className="text-xs font-librebaskervillebold text-center line-clamp-2" title={media.title}>{media.title}</p>
+              <p className="text-xs font-alegreyasc text-center line-clamp-2" title={media.title}>{media.title}</p>
               <time
                 className="text-[10px] text-gray-500"
                 dateTime={new Date(media.date).toISOString()}
@@ -173,7 +173,7 @@ const Gallery = () => {
                   loading="lazy"
                 />
                 <div>
-                  <p className="font-librebaskervillebold">{selectedMedia.title}</p>
+                  <p className="font-alegreyasc">{selectedMedia.title}</p>
                   <p className="text-xs text-gray-500">
                     <time dateTime={new Date(selectedMedia.date).toISOString()}>
                       {new Date(selectedMedia.date).toLocaleDateString()}

@@ -6,20 +6,20 @@ const Section = ({ children, className }) => (
 
 const Block = ({ title, children }) => (
   <div className="w-full bg-white shadow-lg rounded-2xl p-6 flex flex-col gap-4">
-    <h2 className="font-librebaskervillebold text-xl underline">{title}</h2>
+    <h2 className="font-alegreyasc text-xl underline">{title}</h2>
     {children}
   </div>
 );
 
 const PriceLine = ({ label, price, accent }) => (
   <div className="flex flex-row justify-between items-center border-b last:border-b-0 py-1 text-sm w-full">
-    <span className={`leading-tight ${accent ? 'font-librebaskervillebold' : ''}`}>{label}</span>
-    <span className="font-librebaskervillebold">{price}</span>
+    <span className={`leading-tight ${accent ? 'font-alegreyasc' : ''}`}>{label}</span>
+    <span className="font-alegreyasc">{price}</span>
   </div>
 );
 
 const GroupTitle = ({ children }) => (
-  <h3 className="font-librebaskervillebold text-lg mt-2 mb-1">{children}</h3>
+  <h3 className="font-alegreyasc text-lg mt-2 mb-1">{children}</h3>
 );
 
 const Tarifs = () => {
@@ -30,7 +30,7 @@ const Tarifs = () => {
         style={{ backgroundImage: "url('/assets/img/banner.jpg')" }}
       >
         <div className="w-[90%] max-w-xl bg-black/60 text-white flex flex-col justify-center items-center p-5 text-center">
-          <h1 className="text-3xl font-librebaskervillebold">Tarifs 2025</h1>
+          <h1 className="text-3xl font-alegreyasc">Tarifs 2025</h1>
           <p className="text-sm mt-2 leading-tight">Restauration, crêperies, bar et entrée de la fête.</p>
         </div>
       </div>
@@ -88,8 +88,8 @@ const Tarifs = () => {
         </div>
 
         <div className="w-full bg-[#EAC999] rounded-2xl p-6 text-center shadow-lg">
-          <h2 className="font-librebaskervillebold text-xl mb-2">Entrée de la fête</h2>
-          <p className="text-lg"><span className="font-librebaskervillebold">5€</span> (gratuit pour les -16 ans)</p>
+          <h2 className="font-alegreyasc text-xl mb-2">Entrée de la fête</h2>
+          <p className="text-lg"><span className="font-alegreyasc">5€</span> (gratuit pour les -16 ans)</p>
           <p className="text-xs mt-2 opacity-70">Entrée gratuite pour tous avant 13h30.</p>
         </div>
       </Section>

@@ -7,7 +7,7 @@ const APropos = () => {
       >
         <div className="w-[90%] p-7 m-5 bg-black/60 text-white text-center flex flex-col items-center justify-center">
           <h1
-            className="font-librebaskervillebold text-4xl
+            className="font-alegreyasc text-4xl
           "
           >
             A propos
@@ -91,11 +91,11 @@ const APropos = () => {
         style={{ backgroundImage: 'url("/assets/img/champs.jpg")' }}
       >
         <div className=" bg-white rounded-xl py-7 w-full px-2 text-center text-black font-librebaskervilleregular flex flex-col gap-3">
-          <h3 className="font-librebaskervillebold text-xl">
+          <h3 className="font-alegreyasc text-xl">
             Kéroguic = Générosité
           </h3>
           <div className="flex flex-col items-center justify-center gap-0">
-            <h2 className="font-librebaskervillebold text-2xl">235 400 €</h2>
+            <h2 className="font-alegreyasc text-2xl">235 400 €</h2>
             <p>reversés à différentes associations depuis 1992</p>
           </div>
         </div>
@@ -103,7 +103,7 @@ const APropos = () => {
 
       <div className="bg-[#FFE8C6] px-7 py-10 text-black text-justify font-librebaskervilleregular text-sm leading-6 w-full ">
         <div className="flex flex-col gap-3 text-sm">
-          <h3 className="text-lg font-librebaskervillebold">
+          <h3 className="text-lg font-alegreyasc">
             Le mot de la maire de Baud
           </h3>
           <p>

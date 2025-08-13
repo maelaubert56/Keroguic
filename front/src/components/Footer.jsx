@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <>
-      <div className="flex flex-col justify-start items-center gap-6 pt-14 pb-14 bg-black text-white font-librebaskervillebold text-xl uppercase">
+      <div className="flex flex-col justify-start items-center gap-6 pt-14 pb-14 bg-black text-white font-alegreyasc text-xl uppercase">
         <h2>Nos Partenaires</h2>
         <div className="flex">
           <a href="https://www.mairie-baud.fr/">
@@ -27,6 +27,13 @@ const Footer = () => {
               className="w-9"
               src="/assets/img/facebook.svg"
               alt="facebook"
+            />
+          </a>
+          <a href="https://www.instagram.com/keroguic/" target="_blank" rel="noopener noreferrer">
+            <img
+              className="w-9"
+              src="/assets/img/instagram.png"
+              alt="instagram"
             />
           </a>
           <a href="mailto:bureau.vieux-metiers@orange.fr">

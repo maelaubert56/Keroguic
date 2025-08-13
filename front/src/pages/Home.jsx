@@ -81,10 +81,13 @@ const Home = () => {
         style={{ backgroundImage: "url('/assets/img/banner.jpg')" }}
       >
         <div className="w-[90%] p-5 m-4 bg-black/60 text-white flex flex-col text-center justify-center items-center">
-          <h1 className="text-3xl">Fête des vieux métiers</h1>
-          <h2 className="text-2xl">-</h2>
-          <h2 className="text-2xl">Keroguic en Baud</h2>
-          <h2 className="text-2xl">15 août 2025</h2>
+          <img
+            className="w-[200px] h-[200px] object-cover"
+            src="/assets/img/logo.png"
+            alt="Logo de la fête des vieux métiers"
+          />
+          <h2 className="text-2xl font-alegreyasc">Keroguic en Baud</h2>
+          <h2 className="text-2xl font-alegreyasc">15 août 2025</h2>
         </div>
         <Link
           className="bg-white rounded-xl p-2 m-2 shadow-lg hover:bg-gray-200"
@@ -96,7 +99,7 @@ const Home = () => {
 
       <Section className="m-7 p-12 rounded-2xl lg:flex-row flex-col justify-between items-center gap-12 z-1 -mt-5 bg-white shadow-lg">
         <div className="w-full flex sm:flex-row flex-col justify-evenly items-center gap-5">
-          <StatsCard value="30" label="années d'activité" />
+          <StatsCard value="32" label="années d'activité" />
           <StatsCard value="10000" label="visiteurs" additional />
         </div>
         <div className="w-full flex sm:flex-row flex-col justify-evenly items-center gap-5">
@@ -106,14 +109,14 @@ const Home = () => {
       </Section>
 
       <Section className="-mt-14 relative -z-10 bg-[#EAC999] py-20 px-6">
-        <h2 className="font-librebaskervillebold underline text-xl">Tarifs</h2>
+        <h2 className="font-alegreyasc underline text-xl">Tarifs</h2>
         <div className="w-full flex flex-col lg:flex-row items-center lg:justify-evenly justify-center gap-2">
           <div className="flex flex-row justify-center items-center gap-2">
-            <h3 className="font-librebaskervillebold text-lg">Gratuit</h3>
+            <h3 className="font-alegreyasc text-lg">Gratuit</h3>
             <p>pour une arrivée avant 13h30</p>
           </div>
           <div className="flex flex-row justify-center items-center gap-2">
-            <h3 className="font-librebaskervillebold text-lg">5€</h3>
+            <h3 className="font-alegreyasc text-lg">5€</h3>
             <p>après 13h30 (gratuit pour les -16 ans)</p>
           </div>
         </div>
@@ -131,7 +134,7 @@ const Home = () => {
 
       <div className="bg-[url('/assets/img/champs.jpg')] bg-cover bg-center bg-no-repeat w-full flex justify-center items-center relative">
         <div className="w-full m-7 p-10 rounded-2xl flex flex-col justify-between items-center lg:gap-10 gap-4 z-1 -mt-5 bg-white shadow-lg">
-          <h3 className="text-3xl font-librebaskervillebold">Programme</h3>
+          <h3 className="text-3xl font-alegreyasc">Programme</h3>
           <div className="w-full lg:flex-row flex-col flex justify-evenly lg:items-start items-center gap-5">
             <TimeEvent time={"10h"}>
               <p className="text-sm">ouverture</p>
@@ -156,7 +159,7 @@ const Home = () => {
             <TimeEvent time={"18h30"}>
               <span className="text-center leading-tight">
                 <p className="text-sm">CONCERT</p>
-                <h3 className="text-xl font-librebaskervillebold">Madelyn-Ann</h3>
+                <h3 className="text-xl font-alegreyasc">Madelyn-Ann</h3>
               </span>
             </TimeEvent>
 
@@ -168,7 +171,7 @@ const Home = () => {
             <TimeEvent time={"21h"}>
               <span className="text-center leading-tight">
                 <p className="text-sm">FEST-NOZ</p>
-                <h3 className="text-xl font-librebaskervillebold">
+                <h3 className="text-xl font-alegreyasc">
                   Sonerien Du & Martin Hamon Quintet
                 </h3>
               </span>

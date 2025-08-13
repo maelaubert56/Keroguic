@@ -70,7 +70,7 @@ const Article = () => {
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8 py-16">
       {error ? (
         <div className="text-center">
-          <h1 className="text-2xl font-librebaskervillebold mb-4">Article non trouvé</h1>
+          <h1 className="text-2xl font-alegreyasc mb-4">Article non trouvé</h1>
           <p className="text-gray-600">{error}</p>
           <Link to="/blog" className="text-blue-600 hover:underline mt-4 inline-block">
             ← Retour au blog
@@ -83,7 +83,7 @@ const Article = () => {
               ⚠️ Cet article est en brouillon et n&apos;est pas visible publiquement
             </div>
           )}
-          <h1 className="text-2xl font-librebaskervillebold">
+          <h1 className="text-2xl font-alegreyasc">
             {article.title}
           </h1>
 
