@@ -82,7 +82,7 @@ const Home = () => {
       >
         <div className="w-[90%] p-5 m-4 bg-black/60 text-white flex flex-col text-center justify-center items-center">
           <img
-            className="w-[200px] h-[200px] object-cover"
+            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[200px] lg:h-[200px] object-cover"
             src="/assets/img/logo.png"
             alt="Logo de la fête des vieux métiers"
           />
