@@ -172,7 +172,7 @@ const Home = () => {
               <span className="text-center leading-tight">
                 <p className="text-sm">FEST-NOZ</p>
                 <h3 className="text-xl font-alegreyasc">
-                  Sonerien Du & Martin Hamon Quintet
+                  Sonerien Du & Hamon Martin Quintet
                 </h3>
               </span>
             </TimeEvent>
