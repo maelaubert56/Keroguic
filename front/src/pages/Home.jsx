@@ -60,7 +60,7 @@ const Home = () => {
 
   useEffect(() => {
     const prevTitle = document.title;
-    document.title = "Fête des vieux métiers – 15 août Baud";
+    document.title = "Fête des vieux métiers – 15 août Kéroguic en Baud";
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
       metaDesc = document.createElement("meta");
@@ -83,7 +83,7 @@ const Home = () => {
         <div className="w-[90%] p-5 m-4 bg-black/60 text-white flex flex-col text-center justify-center items-center">
           <h1 className="text-3xl">Fête des vieux métiers</h1>
           <h2 className="text-2xl">-</h2>
-          <h2 className="text-2xl">Baud</h2>
+          <h2 className="text-2xl">Keroguic en Baud</h2>
           <h2 className="text-2xl">15 août 2025</h2>
         </div>
         <Link
