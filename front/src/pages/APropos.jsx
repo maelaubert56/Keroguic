@@ -109,7 +109,7 @@ const APropos = () => {
           <p>
             <strong>
               Un retour grandeur nature au début du XXᵉ siècle sur le site
-              Kéroguic à Baud, telle est la promesse de cette fête
+              Kéroguic en Baud, telle est la promesse de cette fête
               incontournable de la cité baldivienne.
             </strong>
           </p>
