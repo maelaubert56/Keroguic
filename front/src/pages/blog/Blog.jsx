@@ -53,7 +53,7 @@ const Blog = () => {
       aria-label="Articles de blog"
     >
       <header className="text-center text-white">
-        <h1 className="text-3xl font-librebaskervillebold">Blog</h1>
+        <h1 className="text-3xl font-alegreyasc">Blog</h1>
         <p className="text-sm" aria-live="polite">
           {totalPosts} articles
         </p>
@@ -74,7 +74,7 @@ const Blog = () => {
             }
             aria-label={`Lire l'article ${post.title}`}
           >
-            <h2 className="text-xl font-librebaskervillebold line-clamp-2" title={post.title}>
+            <h2 className="text-xl font-alegreyasc line-clamp-2" title={post.title}>
               {post.title}
             </h2>
             <div className="flex flex-row gap-2 items-center text-xs text-gray-600">

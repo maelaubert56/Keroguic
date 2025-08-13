@@ -11,18 +11,11 @@ const Header = ({ page }) => {
           aria-label="Accueil - Fête des vieux métiers"
         >
           <img
-            src="/assets/img/logo.png"
+            src="/assets/img/logo-text.png"
             alt="Logo de la fête des vieux métiers"
-            className="h-16 rounded-2xl"
+            className="h-16 py-2"
             loading="lazy"
           />
-          <span className="logo-text font-librebaskervillebold text-md uppercase leading-tight">
-            Fête
-            <br />
-            des vieux
-            <br />
-            métiers
-          </span>
         </Link>
         <nav aria-label="Navigation principale" className="md:flex hidden">
           <ul className="menu flex flex-row mr-4 gap-4 items-center p-2 font-librebaskervilleregular">
