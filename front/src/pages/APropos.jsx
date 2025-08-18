@@ -95,7 +95,7 @@ const APropos = () => {
             Kéroguic = Générosité
           </h3>
           <div className="flex flex-col items-center justify-center gap-0">
-            <h2 className="font-alegreyasc text-2xl">235 400 €</h2>
+            <h2 className="font-alegreyasc text-2xl">257 400 €</h2>
             <p>reversés à différentes associations depuis 1992</p>
           </div>
         </div>
