@@ -22,27 +22,10 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             echo " ------ Connected to server ------"
-            cd /var/www/Keroguic
+            cd /opt/apps/keroguic
             echo "------ Pulling changes ------"
-            git pull origin prod --ff-only
-            cd front
-            echo "------ Installing front dependencies ------"
-            npm install
-            echo "------ Building front ------"
-            npm run build
-            echo "------ Restarting nginx ------"
-            sudo systemctl restart nginx
-            cd ../back
-            echo "------ Save the data ------" # to do this execute the command in backup.js
-            node backup.js
-            echo "------ Installing back dependencies ------"
-            npm install
-            echo "------ Restart the postgres container ------"
-            docker-compose up -d
-            echo "------ Prisma generate ------"
-            npx prisma generate
-            echo "------ Prisma db push ------"
-            npx prisma db push
-            echo "------ Restarting pm2 ------"
-            pm2 restart all
-            echo " ------ Deployed ------"
+            git pull origin prod
+            echo "------ Restarting Docker containers ------"
+            docker-compose down
+            docker-compose up -d --build
+            echo "------ Deployment completed ------"

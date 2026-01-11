@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
 const { authenticateToken, getUser } = require("./helpers/authMiddleware.js");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 require("dotenv").config();
 const multer = require("multer");
@@ -130,7 +130,7 @@ router.post(
     }
 
     // Convert date to ISO string if it's not already
-    if (date && typeof date === 'string' && !date.includes('T')) {
+    if (date && typeof date === "string" && !date.includes("T")) {
       date = new Date(date).toISOString();
     }
 
@@ -153,8 +153,8 @@ router.post(
       path.join(
         __dirname,
         "../uploads/gallery/" +
-        newMedia.id +
-        path.extname(req.file.originalname)
+          newMedia.id +
+          path.extname(req.file.originalname)
       ),
       function (err) {
         if (err) {
@@ -194,7 +194,7 @@ router.put(
       }
 
       // Convert date to ISO string if it's not already
-      if (date && typeof date === 'string' && !date.includes('T')) {
+      if (date && typeof date === "string" && !date.includes("T")) {
         date = new Date(date).toISOString();
       }
 

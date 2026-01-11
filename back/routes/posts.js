@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
 const { authenticateToken, getUser } = require("./helpers/authMiddleware.js");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 require("dotenv").config();
 const bodyParser = require("body-parser");
