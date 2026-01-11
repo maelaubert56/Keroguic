@@ -6,7 +6,7 @@ max_tries=30
 counter=0
 
 until [ $counter -ge $max_tries ]; do
-  if npx prisma migrate deploy --skip-seed 2>&1; then
+  if npx prisma migrate deploy 2>&1; then
     echo "Database is ready and migrations applied!"
     break
   fi
