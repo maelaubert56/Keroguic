@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
 const { authenticateToken } = require("./helpers/authMiddleware.js");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 require("dotenv").config();
 const multer = require("multer");
@@ -154,7 +154,10 @@ router.post(
         // remove the media if it exists
         if (req.file) {
           fs.unlinkSync(
-            path.join(__dirname, "../uploads/pp/temp" + path.extname(req.file.filename))
+            path.join(
+              __dirname,
+              "../uploads/pp/temp" + path.extname(req.file.filename)
+            )
           );
         }
         return res.status(409).json({ message: "Username already taken" });
@@ -181,8 +184,15 @@ router.post(
       if (req.file) {
         // edit the filename to the correct one
         fs.renameSync(
-          path.join(__dirname, "../uploads/pp/temp" + path.extname(req.file.filename)),
-          path.join(__dirname, "../uploads/pp", username + path.extname(req.file.filename))
+          path.join(
+            __dirname,
+            "../uploads/pp/temp" + path.extname(req.file.filename)
+          ),
+          path.join(
+            __dirname,
+            "../uploads/pp",
+            username + path.extname(req.file.filename)
+          )
         );
         pictureFilename = username + path.extname(req.file.filename);
       }
@@ -369,8 +379,10 @@ router.delete("/delete/:id", authenticateToken, async (req, res) => {
         }),
       ]);
     } catch (err) {
-      console.log('Erreur réassignation contenu utilisateur', err);
-      return res.status(500).json({ message: 'Failed to reassign user content' });
+      console.log("Erreur réassignation contenu utilisateur", err);
+      return res
+        .status(500)
+        .json({ message: "Failed to reassign user content" });
     }
 
     // delete the user from the database
