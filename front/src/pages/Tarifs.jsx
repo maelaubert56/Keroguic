@@ -1,5 +1,7 @@
 const Section = ({ children, className }) => (
-  <div className={`flex flex-col justify-center items-center gap-4 ${className}`}>
+  <div
+    className={`flex flex-col justify-center items-center gap-4 ${className}`}
+  >
     {children}
   </div>
 );
@@ -13,7 +15,9 @@ const Block = ({ title, children }) => (
 
 const PriceLine = ({ label, price, accent }) => (
   <div className="flex flex-row justify-between items-center border-b last:border-b-0 py-1 text-sm w-full">
-    <span className={`leading-tight ${accent ? 'font-alegreyasc' : ''}`}>{label}</span>
+    <span className={`leading-tight ${accent ? "font-alegreyasc" : ""}`}>
+      {label}
+    </span>
     <span className="font-alegreyasc">{price}</span>
   </div>
 );
@@ -30,17 +34,28 @@ const Tarifs = () => {
         style={{ backgroundImage: "url('/assets/img/banner.jpg')" }}
       >
         <div className="w-[90%] max-w-xl bg-black/60 text-white flex flex-col justify-center items-center p-5 text-center">
-          <h1 className="text-3xl font-alegreyasc">Tarifs 2025</h1>
-          <p className="text-sm mt-2 leading-tight">Restauration, crêperies, bar et entrée de la fête.</p>
+          <h1 className="text-3xl font-alegreyasc">Tarifs 2026</h1>
+          <p className="text-sm mt-2 leading-tight">
+            Restauration, crêperies, bar et entrée de la fête.
+          </p>
         </div>
       </div>
 
       <Section className="m-7 -mt-10 z-10 relative gap-8">
         <div className="grid lg:grid-cols-2 gap-8 w-full">
           <Block title="Restaurant">
-            <PriceLine label="Jambon braisé + Frites + Fromage + Tarte" price="12€" />
-            <PriceLine label="Cuisse de poulet + Frites + Fromage + Tarte" price="10€" />
-            <PriceLine label="Chipolatas + Frites + Fromage + Tarte" price="9€" />
+            <PriceLine
+              label="Jambon braisé + Frites + Fromage + Tarte"
+              price="12€"
+            />
+            <PriceLine
+              label="Cuisse de poulet + Frites + Fromage + Tarte"
+              price="10€"
+            />
+            <PriceLine
+              label="Chipolatas + Frites + Fromage + Tarte"
+              price="9€"
+            />
           </Block>
 
           <Block title="Casse-croûte">
@@ -57,7 +72,11 @@ const Tarifs = () => {
             <PriceLine label="Jambon" price="3€" />
             <PriceLine label="Jambon + Œuf" price="3,50€" />
             <PriceLine label="Jambon + Fromage" price="3,50€" />
-            <PriceLine label="Complète (œuf + jambon + fromage)" price="4€" accent />
+            <PriceLine
+              label="Complète (œuf + jambon + fromage)"
+              price="4€"
+              accent
+            />
             <GroupTitle>Crêpes froment</GroupTitle>
             <PriceLine label="Sucre" price="2€" />
             <PriceLine label="Beurre" price="2,50€" />
@@ -89,8 +108,13 @@ const Tarifs = () => {
 
         <div className="w-full bg-[#EAC999] rounded-2xl p-6 text-center shadow-lg">
           <h2 className="font-alegreyasc text-xl mb-2">Entrée de la fête</h2>
-          <p className="text-lg"><span className="font-alegreyasc">5€</span> (gratuit pour les -16 ans)</p>
-          <p className="text-xs mt-2 opacity-70">Entrée gratuite pour tous avant 13h30.</p>
+          <p className="text-lg">
+            <span className="font-alegreyasc">6€</span> (gratuit pour les -16
+            ans)
+          </p>
+          <p className="text-xs mt-2 opacity-70">
+            Entrée gratuite pour tous avant 13h30.
+          </p>
         </div>
       </Section>
     </main>
