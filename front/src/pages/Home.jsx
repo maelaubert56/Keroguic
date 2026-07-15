@@ -87,7 +87,7 @@ const Home = () => {
             alt="Logo de la fête des vieux métiers"
           />
           <h2 className="text-2xl font-alegreyasc">Keroguic en Baud</h2>
-          <h2 className="text-2xl font-alegreyasc">15 août 2025</h2>
+          <h2 className="text-2xl font-alegreyasc">15 août 2026</h2>
         </div>
         <Link
           className="bg-white rounded-xl p-2 m-2 shadow-lg hover:bg-gray-200"
@@ -156,10 +156,23 @@ const Home = () => {
               data-src="assets/img/separation.png"
               alt="Séparateur décoratif"
             />
-            <TimeEvent time={"18h30"}>
+            <TimeEvent time={"16h"}>
+              <span className="text-center leading-tight">
+                <p className="text-sm">PRESTATION DU</p>
+                <h3 className="text-xl font-alegreyasc">
+                  Bagad de Lann Bihoué
+                </h3>
+              </span>
+            </TimeEvent>
+            <img
+              className="w-[100px] lg:hidden lazy"
+              data-src="assets/img/separation.png"
+              alt="Séparateur décoratif"
+            />
+            <TimeEvent time={"18h"}>
               <span className="text-center leading-tight">
                 <p className="text-sm">CONCERT</p>
-                <h3 className="text-xl font-alegreyasc">Madelyn-Ann</h3>
+                <h3 className="text-xl font-alegreyasc">Mask Ha Gazh</h3>
               </span>
             </TimeEvent>
 
@@ -172,7 +185,7 @@ const Home = () => {
               <span className="text-center leading-tight">
                 <p className="text-sm">FEST-NOZ</p>
                 <h3 className="text-xl font-alegreyasc">
-                  Sonerien Du & Hamon Martin Quintet
+                  Sonerien Du & Ampouailh
                 </h3>
               </span>
             </TimeEvent>
