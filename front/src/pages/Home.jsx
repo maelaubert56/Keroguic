@@ -68,7 +68,7 @@ const Home = () => {
       document.head.appendChild(metaDesc);
     }
     metaDesc.content =
-      "Découvrez la fête des vieux métiers à Baud : programme, tarifs, galerie des éditions précédentes et actualités.";
+      "Découvrez la fête des vieux métiers à Baud : programme, menu, galerie des éditions précédentes et actualités.";
     return () => {
       document.title = prevTitle;
     };
@@ -116,7 +116,7 @@ const Home = () => {
             <p>pour une arrivée avant 13h30</p>
           </div>
           <div className="flex flex-row justify-center items-center gap-2">
-            <h3 className="font-alegreyasc text-lg">5€</h3>
+            <h3 className="font-alegreyasc text-lg">6€</h3>
             <p>après 13h30 (gratuit pour les -16 ans)</p>
           </div>
         </div>

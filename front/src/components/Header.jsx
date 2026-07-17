@@ -62,12 +62,12 @@ const Header = ({ page }) => {
             </li>
             <li>
               <NavLink
-                to="/tarifs"
+                to="/menu"
                 className={({ isActive }) =>
-                  isActive || page === "tarifs" ? "active" : undefined
+                  isActive || page === "menu" ? "active" : undefined
                 }
               >
-                Tarifs
+                Menu
               </NavLink>
             </li>
             <li>
