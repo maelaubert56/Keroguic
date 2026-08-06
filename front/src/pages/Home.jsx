@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { CalendarDays, Users, Store, HeartHandshake } from "lucide-react";
 
 const Section = ({ children, className }) => (
   <div
@@ -11,20 +12,21 @@ const Section = ({ children, className }) => (
   </div>
 );
 
-const StatsCard = ({ value, label, additional }) => (
+const StatsCard = ({ value, label, additional, icon: Icon }) => (
   <div
-    className="flex flex-col justify-center items-center"
+    className="flex flex-col justify-center items-center gap-2 w-full min-h-[168px] sm:min-h-[200px] p-4 rounded-xl bg-[#FFE8C6]/40 border border-[#EAC999]"
     data-max={additional}
   >
-    <div
-      className={`flex flex-row justify-center items-center gap-3 ${
-        additional ? "-ml-7" : ""
-      }`}
-    >
-      {additional && <h2 className="font-librebaskervillebold text-5xl">+</h2>}
-      <h2 className="font-librebaskervillebold text-5xl">{value}</h2>
+    <Icon className="text-[#A8462E]" size={28} />
+    <div className="flex flex-row justify-center items-baseline gap-1">
+      {additional && (
+        <h2 className="font-librebaskervillebold text-2xl sm:text-4xl">+</h2>
+      )}
+      <h2 className="font-librebaskervillebold text-3xl sm:text-5xl">
+        {value}
+      </h2>
     </div>
-    <p>{label}</p>
+    <p className="text-sm sm:text-base text-center leading-tight">{label}</p>
   </div>
 );
 
@@ -80,7 +82,7 @@ const Home = () => {
         className="h-[40vh] bg-cover bg-center bg-no-repeat flex flex-col justify-start items-center"
         style={{ backgroundImage: "url('/assets/img/banner.jpg')" }}
       >
-        <div className="w-[90%] p-5 m-4 bg-black/60 text-white flex flex-col text-center justify-center items-center">
+        <div className="w-[90%] p-5 m-4 rounded-2xl bg-[#1B2A3C]/70 backdrop-blur-sm text-white flex flex-col text-center justify-center items-center shadow-lg">
           <img
             className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[200px] lg:h-[200px] object-cover"
             src="/assets/img/logo.png"
@@ -90,39 +92,42 @@ const Home = () => {
           <h2 className="text-2xl font-alegreyasc">15 août 2026</h2>
         </div>
         <Link
-          className="bg-white rounded-xl p-2 m-2 shadow-lg hover:bg-gray-200"
+          className="bg-white rounded-xl p-2 m-2 shadow-lg hover:bg-[#FFE8C6] transition-colors"
           to="/blog"
         >
           Voir les actualités de la fête
         </Link>
       </div>
 
-      <Section className="m-7 p-12 rounded-2xl lg:flex-row flex-col justify-between items-center gap-12 z-1 -mt-5 bg-white shadow-lg">
-        <div className="w-full flex sm:flex-row flex-col justify-evenly items-center gap-5">
-          <StatsCard value="32" label="années d'activité" />
-          <StatsCard value="10000" label="visiteurs" additional />
-        </div>
-        <div className="w-full flex sm:flex-row flex-col justify-evenly items-center gap-5">
-          <StatsCard value="60" label="exposants" additional />
-          <StatsCard value="400" label="bénévoles" additional />
+      <Section className="m-7 p-8 sm:p-12 rounded-2xl justify-between items-center gap-12 z-1 -mt-5 bg-white shadow-lg">
+        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <StatsCard value="33" label="années d'activité" icon={CalendarDays} />
+          <StatsCard value="10000" label="visiteurs" additional icon={Users} />
+          <StatsCard value="60" label="exposants" additional icon={Store} />
+          <StatsCard
+            value="400"
+            label="bénévoles"
+            additional
+            icon={HeartHandshake}
+          />
         </div>
       </Section>
 
-      <Section className="-mt-14 relative -z-10 bg-[#EAC999] py-20 px-6">
-        <h2 className="font-alegreyasc underline text-xl">Tarifs</h2>
-        <div className="w-full flex flex-col lg:flex-row items-center lg:justify-evenly justify-center gap-2">
-          <div className="flex flex-row justify-center items-center gap-2">
-            <h3 className="font-alegreyasc text-lg">Gratuit</h3>
+      <Section className="-mt-14 relative -z-10 bg-[#EAC999] py-16 sm:py-24 px-6 gap-6">
+        <h2 className="font-alegreyasc underline text-2xl">Tarifs</h2>
+        <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-8">
+          <div className="flex flex-col items-center text-center gap-1 bg-white/50 rounded-xl px-6 py-4">
+            <h3 className="font-alegreyasc text-2xl">Gratuit</h3>
             <p>pour une arrivée avant 13h30</p>
           </div>
-          <div className="flex flex-row justify-center items-center gap-2">
-            <h3 className="font-alegreyasc text-lg">6€</h3>
+          <div className="flex flex-col items-center text-center gap-1 bg-white/50 rounded-xl px-6 py-4">
+            <h3 className="font-alegreyasc text-2xl">6€</h3>
             <p>après 13h30 (gratuit pour les -16 ans)</p>
           </div>
         </div>
       </Section>
 
-      <Section className="bg-[#FFE8C6] -z-10 py-20 px-6 text-center">
+      <Section className="bg-[#FFE8C6] -z-10 py-16 sm:py-24 px-6 text-center">
         <p>
           La fête des vieux métiers est une fête organisée dans la commune de
           Baud, dans le Morbihan, qui a lieu tous les ans le 15 août.
@@ -133,7 +138,7 @@ const Home = () => {
       </Section>
 
       <div className="bg-[url('/assets/img/champs.jpg')] bg-cover bg-center bg-no-repeat w-full flex justify-center items-center relative">
-        <div className="w-full m-7 p-10 rounded-2xl flex flex-col justify-between items-center lg:gap-10 gap-4 z-1 -mt-5 bg-white shadow-lg">
+        <div className="w-full m-7 p-8 sm:p-12 rounded-2xl flex flex-col justify-between items-center lg:gap-10 gap-6 z-1 -mt-5 bg-white shadow-lg">
           <h3 className="text-3xl font-alegreyasc">Programme</h3>
           <div className="w-full lg:flex-row flex-col flex justify-evenly lg:items-start items-center gap-5">
             <TimeEvent time={"10h"}>
