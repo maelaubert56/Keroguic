@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
+import { ArrowLeft } from "lucide-react";
 
 const Article = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
 
@@ -13,7 +15,7 @@ const Article = () => {
     const headers = {
       "Content-Type": "application/json",
     };
-    
+
     if (token) {
       headers.Authorization = token;
     }
@@ -32,7 +34,7 @@ const Article = () => {
             headers: {
               "Content-Type": "application/json",
             },
-          }).then(publicResponse => {
+          }).then((publicResponse) => {
             if (publicResponse.status === 200) {
               return publicResponse.json();
             } else {
@@ -61,8 +63,12 @@ const Article = () => {
         metaDesc.name = "description";
         document.head.appendChild(metaDesc);
       }
-      metaDesc.content = article.content?.replace(/[#*_>`]/g, " ").slice(0, 155) || `Article du blog de la fête des vieux métiers.`;
-      return () => { document.title = prevTitle; };
+      metaDesc.content =
+        article.content?.replace(/[#*_>`]/g, " ").slice(0, 155) ||
+        `Article du blog de la fête des vieux métiers.`;
+      return () => {
+        document.title = prevTitle;
+      };
     }
   }, [article]);
 
@@ -72,23 +78,34 @@ const Article = () => {
         <div className="text-center">
           <h1 className="text-2xl font-alegreyasc mb-4">Article non trouvé</h1>
           <p className="text-gray-600">{error}</p>
-          <Link to="/blog" className="text-blue-600 hover:underline mt-4 inline-block">
+          <Link
+            to="/blog"
+            className="text-blue-600 hover:underline mt-4 inline-block"
+          >
             ← Retour au blog
           </Link>
         </div>
       ) : article ? (
         <div className="flex flex-col gap-10 p-4 w-full lg:w-2/3 justify-start items-center">
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="flex flex-row gap-2 items-center self-start text-gray-700 hover:underline"
+            aria-label="Retour"
+          >
+            <ArrowLeft size={20} />
+            Retour
+          </button>
           {!article.published && (
             <div className="w-full bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded">
-              ⚠️ Cet article est en brouillon et n&apos;est pas visible publiquement
+              ⚠️ Cet article est en brouillon et n&apos;est pas visible
+              publiquement
             </div>
           )}
-          <h1 className="text-2xl font-alegreyasc">
-            {article.title}
-          </h1>
+          <h1 className="text-2xl font-alegreyasc">{article.title}</h1>
 
           <div className="mt-4 w-full" data-color-mode="light">
-              <MDEditor.Markdown source={article?.content} />
+            <MDEditor.Markdown source={article?.content} />
           </div>
           <div className="flex w-full flex-row gap-2 justify-start items-center">
             <img

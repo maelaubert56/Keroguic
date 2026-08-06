@@ -15,7 +15,7 @@ const Footer = () => {
       </div>
       <footer className="border-t border-white bg-black flex flex-col justify-center items-center gap-5 text-center p-7 text-white">
         <div className="font-arial text-sm font-semibold">
-          <h2>Copyright © 2023 - Comité du Quartier des Bois</h2>
+          <h2>Copyright © 2026 - Comité du Quartier des Bois</h2>
           <h2>Site réalisé par Maël Aubert</h2>
           <a className="text-white underline hover:text-gray-300" href="/admin">
             Page Admin
@@ -29,7 +29,11 @@ const Footer = () => {
               alt="facebook"
             />
           </a>
-          <a href="https://www.instagram.com/keroguic/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.instagram.com/keroguic/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               className="w-9"
               src="/assets/img/instagram.png"
